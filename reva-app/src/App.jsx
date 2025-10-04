@@ -11,6 +11,7 @@ import CampaignDetails from './pages/marketer/CampaignDetails';
 import BrowseCampaigns from './pages/promoter/BrowseCampaigns';
 import MyLinks from './pages/promoter/MyLinks';
 import Earnings from './pages/promoter/Earnings';
+import Track from './pages/Track';
 import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Hero />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/track/:shortCode" element={<Track />} />
           <Route
             path="/dashboard"
             element={
