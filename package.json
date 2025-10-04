@@ -1,0 +1,19 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "Reva is where sharing meets opportunity. It turns everyday links into powerful growth engines, rewarding real engagement and building trust between people and brands. Simple idea, bold execution.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.58.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "react-router-dom": "^7.9.3",
+    "tailwindcss": "^4.1.14"
+  }
+}
