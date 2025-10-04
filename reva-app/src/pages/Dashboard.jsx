@@ -1,10 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { supabase } from '../lib/supabase';
 
 const Dashboard = () => {
   const { user, userRole, logout } = useAuth();
   const navigate = useNavigate();
+  const [stats, setStats] = useState({
+    totalCampaigns: 0,
+    activeCampaigns: 0,
+    totalBudget: 0,
+    totalSpent: 0
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (userRole === 'marketer') {
+      fetchMarketerStats();
+    } else {
+      setLoading(false);
+    }
+  }, [user, userRole]);
+
+  const fetchMarketerStats = async () => {
+    try {
+      const { data: campaignsData } = await supabase
+        .from('campaigns')
+        .select('id, budget, remaining_budget, is_active')
+        .eq('marketer_id', user.id);
+
+      const totalCampaigns = campaignsData?.length || 0;
+      const activeCampaigns = campaignsData?.filter(c => c.is_active).length || 0;
+      const totalBudget = campaignsData?.reduce((sum, c) => sum + parseFloat(c.budget || 0), 0) || 0;
+      const totalSpent = campaignsData?.reduce((sum, c) => sum + (parseFloat(c.budget || 0) - parseFloat(c.remaining_budget || 0)), 0) || 0;
+
+      setStats({
+        totalCampaigns,
+        activeCampaigns,
+        totalBudget,
+        totalSpent
+      });
+    } catch (err) {
+      console.error('Error fetching stats:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleLogout = async () => {
     await logout();
@@ -49,28 +90,49 @@ const Dashboard = () => {
                 <p className="text-gray-400 mb-6">
                   Create and manage your campaigns, track performance, and connect with promoters.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-black rounded-lg p-6 border border-gray-800">
-                    <div className="text-3xl font-bold text-white">0</div>
-                    <div className="text-sm text-gray-400 mt-1">Active Campaigns</div>
+                {loading ? (
+                  <div className="text-center py-8">
+                    <div className="inline-block w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
                   </div>
-                  <div className="bg-black rounded-lg p-6 border border-gray-800">
-                    <div className="text-3xl font-bold text-white">0</div>
-                    <div className="text-sm text-gray-400 mt-1">Total Clicks</div>
-                  </div>
-                  <div className="bg-black rounded-lg p-6 border border-gray-800">
-                    <div className="text-3xl font-bold text-white">0</div>
-                    <div className="text-sm text-gray-400 mt-1">Promoters</div>
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <div className="relative inline-flex items-center justify-center group">
-                    <div className="absolute transition-all duration-200 rounded-lg -inset-px bg-gradient-to-r from-cyan-500 to-purple-500 group-hover:shadow-lg group-hover:shadow-cyan-500/50"></div>
-                    <button className="relative inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-black border border-transparent rounded-lg">
-                      Create New Campaign
-                    </button>
-                  </div>
-                </div>
+                ) : (
+                  <>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="bg-black rounded-lg p-6 border border-gray-800">
+                        <div className="text-3xl font-bold text-white">{stats.totalCampaigns}</div>
+                        <div className="text-sm text-gray-400 mt-1">Total Campaigns</div>
+                      </div>
+                      <div className="bg-black rounded-lg p-6 border border-gray-800">
+                        <div className="text-3xl font-bold text-green-400">{stats.activeCampaigns}</div>
+                        <div className="text-sm text-gray-400 mt-1">Active Campaigns</div>
+                      </div>
+                      <div className="bg-black rounded-lg p-6 border border-gray-800">
+                        <div className="text-3xl font-bold text-white">${stats.totalBudget.toFixed(2)}</div>
+                        <div className="text-sm text-gray-400 mt-1">Total Budget</div>
+                      </div>
+                      <div className="bg-black rounded-lg p-6 border border-gray-800">
+                        <div className="text-3xl font-bold text-purple-400">${stats.totalSpent.toFixed(2)}</div>
+                        <div className="text-sm text-gray-400 mt-1">Total Spent</div>
+                      </div>
+                    </div>
+                    <div className="mt-6 flex gap-4">
+                      <div className="relative inline-flex items-center justify-center group">
+                        <div className="absolute transition-all duration-200 rounded-lg -inset-px bg-gradient-to-r from-cyan-500 to-purple-500 group-hover:shadow-lg group-hover:shadow-cyan-500/50"></div>
+                        <button 
+                          onClick={() => navigate('/marketer/create-campaign')}
+                          className="relative inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-black border border-transparent rounded-lg"
+                        >
+                          Create Campaign
+                        </button>
+                      </div>
+                      <button
+                        onClick={() => navigate('/marketer/campaigns')}
+                        className="px-6 py-3 text-base font-semibold text-cyan-400 hover:text-cyan-300 transition"
+                      >
+                        My Campaigns →
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

@@ -5,6 +5,9 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import CreateCampaign from './pages/marketer/CreateCampaign';
+import MyCampaigns from './pages/marketer/MyCampaigns';
+import CampaignDetails from './pages/marketer/CampaignDetails';
 import './App.css';
 
 function App() {
@@ -20,6 +23,30 @@ function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/marketer/create-campaign"
+            element={
+              <ProtectedRoute>
+                <CreateCampaign />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/marketer/campaigns"
+            element={
+              <ProtectedRoute>
+                <MyCampaigns />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/marketer/campaigns/:id"
+            element={
+              <ProtectedRoute>
+                <CampaignDetails />
               </ProtectedRoute>
             }
           />
