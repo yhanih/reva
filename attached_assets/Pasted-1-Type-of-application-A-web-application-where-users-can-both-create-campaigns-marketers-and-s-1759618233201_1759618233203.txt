@@ -1,0 +1,66 @@
+1. Type of application:
+👉 A web application where users can both create campaigns (marketers) and share links (promoters).
+Later we’ll add an API, but MVP is fully web-based.
+
+2. Core features (MVP priorities):
+
+✅ Link generation & tracking (unique links per promoter per campaign)
+
+✅ User accounts & authentication (marketer / promoter distinction)
+
+✅ Click verification system (log clicks, check human vs bot)
+
+✅ Reward crediting system (track promoter earnings per click)
+
+🧭 Dashboard (basic analytics) — yes but can be simple at first
+
+❌ Brand/business tiers — not needed for MVP
+
+👉 The heart of MVP is the Temu-style click → verify → reward loop.
+
+3. Technology preferences:
+👉 Frontend: React (Vite)
+👉 Styling: TailwindCSS (dark mode + gradient)
+👉 Routing: wouter
+👉 Backend: Node.js (Express)
+👉 Database: Supabase (Postgres)
+👉 Anti-fraud: built-in checks + optional CAPTCHA (Cloudflare Turnstile)
+
+This matches the structure we’ve already planned together.
+
+4. MVP scope:
+👉 Start with a focused MVP.
+Core loop only:
+
+Marketer creates a campaign
+
+Promoter generates a unique link
+
+Clicks get tracked & verified
+
+Promoter earns per valid click
+
+Dashboards can be basic placeholders at first.
+We’ll iterate in PRD steps after.
+
+🟢 Sample Message You Can Paste Back to the Agent
+Let's build a web application. For MVP, I want to focus on the core Temu-style loop: 
+marketers create and fund campaigns, promoters generate unique links, and Reva tracks every click to verify it's human before rewarding promoters.
+
+MVP Core Features:
+- Unique link generation & tracking
+- User accounts and authentication (marketer + promoter)
+- Click logging & human verification
+- Basic reward crediting per valid click
+- Simple dashboards (just enough to test the loop)
+
+Tech Stack:
+- Frontend: React (Vite)
+- Styling: TailwindCSS (dark mode, gradient)
+- Routing: wouter
+- Backend: Node.js (Express)
+- Database: Supabase
+- Anti-fraud: fingerprinting, IP check, optional CAPTCHA
+
+MVP Scope:
+Start with a focused MVP. Just the end-to-end campaign → click → reward flow working cleanly. We'll build the rest in iterative steps.
