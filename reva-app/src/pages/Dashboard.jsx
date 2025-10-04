@@ -12,11 +12,19 @@ const Dashboard = () => {
     totalBudget: 0,
     totalSpent: 0
   });
+  const [promoterStats, setPromoterStats] = useState({
+    totalLinks: 0,
+    totalClicks: 0,
+    totalEarnings: 0,
+    pendingEarnings: 0
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (userRole === 'marketer') {
       fetchMarketerStats();
+    } else if (userRole === 'promoter') {
+      fetchPromoterStats();
     } else {
       setLoading(false);
     }
@@ -42,6 +50,43 @@ const Dashboard = () => {
       });
     } catch (err) {
       console.error('Error fetching stats:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchPromoterStats = async () => {
+    try {
+      const { data: linksData } = await supabase
+        .from('tracking_links')
+        .select('id')
+        .eq('promoter_id', user.id);
+
+      const totalLinks = linksData?.length || 0;
+
+      const { data: clicksData } = await supabase
+        .from('clicks')
+        .select('id')
+        .eq('promoter_id', user.id);
+
+      const totalClicks = clicksData?.length || 0;
+
+      const { data: earningsData } = await supabase
+        .from('earnings')
+        .select('amount, status')
+        .eq('promoter_id', user.id);
+
+      const totalEarnings = earningsData?.reduce((sum, e) => sum + parseFloat(e.amount || 0), 0) || 0;
+      const pendingEarnings = earningsData?.filter(e => e.status === 'pending').reduce((sum, e) => sum + parseFloat(e.amount || 0), 0) || 0;
+
+      setPromoterStats({
+        totalLinks,
+        totalClicks,
+        totalEarnings,
+        pendingEarnings
+      });
+    } catch (err) {
+      console.error('Error fetching promoter stats:', err);
     } finally {
       setLoading(false);
     }
@@ -145,28 +190,55 @@ const Dashboard = () => {
                 <p className="text-gray-400 mb-6">
                   Browse campaigns, share links, and track your earnings.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-black rounded-lg p-6 border border-gray-800">
-                    <div className="text-3xl font-bold text-white">$0</div>
-                    <div className="text-sm text-gray-400 mt-1">Total Earnings</div>
+                {loading ? (
+                  <div className="text-center py-8">
+                    <div className="inline-block w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
                   </div>
-                  <div className="bg-black rounded-lg p-6 border border-gray-800">
-                    <div className="text-3xl font-bold text-white">0</div>
-                    <div className="text-sm text-gray-400 mt-1">Shares</div>
-                  </div>
-                  <div className="bg-black rounded-lg p-6 border border-gray-800">
-                    <div className="text-3xl font-bold text-white">0</div>
-                    <div className="text-sm text-gray-400 mt-1">Active Links</div>
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <div className="relative inline-flex items-center justify-center group">
-                    <div className="absolute transition-all duration-200 rounded-lg -inset-px bg-gradient-to-r from-purple-500 to-cyan-500 group-hover:shadow-lg group-hover:shadow-purple-500/50"></div>
-                    <button className="relative inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-black border border-transparent rounded-lg">
-                      Browse Campaigns
-                    </button>
-                  </div>
-                </div>
+                ) : (
+                  <>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="bg-black rounded-lg p-6 border border-gray-800">
+                        <div className="text-3xl font-bold text-white">{promoterStats.totalLinks}</div>
+                        <div className="text-sm text-gray-400 mt-1">Total Links</div>
+                      </div>
+                      <div className="bg-black rounded-lg p-6 border border-gray-800">
+                        <div className="text-3xl font-bold text-cyan-400">{promoterStats.totalClicks}</div>
+                        <div className="text-sm text-gray-400 mt-1">Total Clicks</div>
+                      </div>
+                      <div className="bg-black rounded-lg p-6 border border-gray-800">
+                        <div className="text-3xl font-bold text-green-400">${promoterStats.totalEarnings.toFixed(2)}</div>
+                        <div className="text-sm text-gray-400 mt-1">Total Earnings</div>
+                      </div>
+                      <div className="bg-black rounded-lg p-6 border border-gray-800">
+                        <div className="text-3xl font-bold text-yellow-400">${promoterStats.pendingEarnings.toFixed(2)}</div>
+                        <div className="text-sm text-gray-400 mt-1">Pending Earnings</div>
+                      </div>
+                    </div>
+                    <div className="mt-6 flex flex-wrap gap-4">
+                      <div className="relative inline-flex items-center justify-center group">
+                        <div className="absolute transition-all duration-200 rounded-lg -inset-px bg-gradient-to-r from-purple-500 to-cyan-500 group-hover:shadow-lg group-hover:shadow-purple-500/50"></div>
+                        <button 
+                          onClick={() => navigate('/promoter/campaigns')}
+                          className="relative inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-black border border-transparent rounded-lg"
+                        >
+                          Browse Campaigns
+                        </button>
+                      </div>
+                      <button
+                        onClick={() => navigate('/promoter/links')}
+                        className="px-6 py-3 text-base font-semibold text-purple-400 hover:text-purple-300 transition"
+                      >
+                        My Links →
+                      </button>
+                      <button
+                        onClick={() => navigate('/promoter/earnings')}
+                        className="px-6 py-3 text-base font-semibold text-cyan-400 hover:text-cyan-300 transition"
+                      >
+                        Earnings →
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

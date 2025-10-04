@@ -8,6 +8,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 import CreateCampaign from './pages/marketer/CreateCampaign';
 import MyCampaigns from './pages/marketer/MyCampaigns';
 import CampaignDetails from './pages/marketer/CampaignDetails';
+import BrowseCampaigns from './pages/promoter/BrowseCampaigns';
+import MyLinks from './pages/promoter/MyLinks';
+import Earnings from './pages/promoter/Earnings';
 import './App.css';
 
 function App() {
@@ -47,6 +50,30 @@ function App() {
             element={
               <ProtectedRoute>
                 <CampaignDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/promoter/campaigns"
+            element={
+              <ProtectedRoute>
+                <BrowseCampaigns />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/promoter/links"
+            element={
+              <ProtectedRoute>
+                <MyLinks />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/promoter/earnings"
+            element={
+              <ProtectedRoute>
+                <Earnings />
               </ProtectedRoute>
             }
           />
