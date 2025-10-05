@@ -85,8 +85,8 @@ const Hero = () => {
                         <h1 className="px-6 text-lg text-gray-600">Performance marketing platform connecting marketers and promoters</h1>
                         <p className="mt-5 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight">
                             Turn everyday links into powerful
-                            <span className="relative inline-flex sm:inline">
-                                <span className="bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-lg filter opacity-50 w-full h-full absolute inset-0"></span>
+                            <span className="relative inline-block">
+                                <span className="absolute -inset-x-2 -inset-y-1 bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-2xl opacity-90 mix-blend-screen pointer-events-none"></span>
                                 <span className="relative"> growth engines</span>
                             </span>
                         </p>
