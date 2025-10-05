@@ -16,13 +16,13 @@
     linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
   background-size: 20px 30px;
   -webkit-mask-image: radial-gradient(
-    ellipse 100% 80% at 50% 0%,
-    #000 40%,
-    transparent 80%
+    ellipse 80% 30% at 50% 0%,
+    #000 20%,
+    transparent 50%
   );
   mask-image: radial-gradient(
-    ellipse 100% 80% at 50% 0%,
-    #000 40%,
-    transparent 80%
+    ellipse 80% 30% at 50% 0%,
+    #000 20%,
+    transparent 50%
   );
 }
