@@ -1,0 +1,47 @@
+.animated-text-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.animated-words {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  height: 1.2em;
+  vertical-align: bottom;
+}
+
+.animated-words::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    white 10%,
+    transparent 30%,
+    transparent 70%,
+    white 90%
+  );
+  z-index: 20;
+  pointer-events: none;
+}
+
+.animated-word {
+  display: block;
+  height: 100%;
+  animation: slideText 9s infinite;
+}
+
+@keyframes slideText {
+  0%, 30% {
+    transform: translateY(0%);
+  }
+  33%, 63% {
+    transform: translateY(-100%);
+  }
+  66%, 96% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
