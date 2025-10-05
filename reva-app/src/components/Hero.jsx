@@ -5,7 +5,7 @@ const Hero = () => {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <div className="overflow-x-hidden bg-gray-50">
+        <div className="overflow-x-hidden bg-white">
             <header className="py-4 md:py-6">
                 <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between">
@@ -84,7 +84,7 @@ const Hero = () => {
                 </div>
             </header>
 
-            <section className="pt-12 bg-gray-50 sm:pt-16">
+            <section className="pt-12 bg-white sm:pt-16">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="max-w-2xl mx-auto text-center">
                         <h1 className="px-6 text-lg font-medium text-gray-600 tracking-wide">Performance marketing platform connecting marketers and promoters</h1>
@@ -122,7 +122,7 @@ const Hero = () => {
 
                 <div className="pb-12 bg-white">
                     <div className="relative">
-                        <div className="absolute inset-0 h-2/3 bg-gray-50"></div>
+                        <div className="absolute inset-0 h-2/3 bg-white"></div>
                         <div className="relative mx-auto">
                             <div className="lg:max-w-6xl lg:mx-auto">
                                 <img className="transform scale-110" src="https://cdn.rareblocks.xyz/collection/clarity/images/hero/2/illustration.png" alt="" />
