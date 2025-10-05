@@ -1,3 +1,5 @@
+I wanto make the grid start from the header that's all I like the way it is right now just make it from the header is that understand able ?
+You said:
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Pattern from './Pattern';
@@ -85,7 +87,7 @@ const Hero = () => {
                 </div>
             </header>
 
-            <section className="bg-white relative">
+            <section className="pt-12 bg-white sm:pt-16 relative">
                 <div className="absolute inset-0 overflow-hidden">
                     <Pattern />
                 </div>
