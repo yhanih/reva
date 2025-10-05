@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { verifyClick } from '../lib/clickVerification';
 
 export default function Track() {
   const { shortCode } = useParams();
@@ -31,9 +30,7 @@ export default function Track() {
             campaigns (
               id,
               destination_url,
-              payout_per_click,
-              is_active,
-              remaining_budget
+              is_active
             )
           `)
           .eq('short_code', shortCode)
@@ -53,14 +50,6 @@ export default function Track() {
           return;
         }
 
-        const verification = await verifyClick(
-          ipAddress,
-          userAgent,
-          trackingLink.id,
-          campaign.id,
-          campaign.payout_per_click
-        );
-
         const { data: clickData, error: clickError } = await supabase
           .from('clicks')
           .insert({
@@ -69,8 +58,8 @@ export default function Track() {
             promoter_id: trackingLink.promoter_id,
             ip_address: ipAddress,
             user_agent: userAgent,
-            is_valid: verification.is_valid,
-            payout_amount: verification.is_valid ? campaign.payout_per_click : 0,
+            is_valid: false,
+            payout_amount: null,
           })
           .select()
           .single();
@@ -82,26 +71,12 @@ export default function Track() {
           return;
         }
 
-        if (verification.is_valid && clickData) {
-          const { error: earningError } = await supabase
-            .from('earnings')
-            .insert({
-              promoter_id: trackingLink.promoter_id,
-              campaign_id: campaign.id,
-              click_id: clickData.id,
-              amount: campaign.payout_per_click,
-              status: 'pending',
-            });
-
-          if (earningError) {
-            console.error('Error recording earning:', earningError);
-          }
-
+        if (clickData && clickData.is_valid) {
           setStatus('success');
           setMessage('Click verified! Redirecting...');
         } else {
           setStatus('warning');
-          setMessage(verification.reason || 'Click could not be verified.');
+          setMessage('Click recorded but could not be verified for payout.');
         }
 
         setTimeout(() => {
@@ -124,10 +99,9 @@ export default function Track() {
         {status === 'loading' && (
           <div className="space-y-6">
             <div className="flex justify-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-500"></div>
+              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-cyan-400"></div>
             </div>
-            <h2 className="text-2xl font-bold text-white">Processing...</h2>
-            <p className="text-gray-300">{message}</p>
+            <p className="text-white text-lg">{message}</p>
           </div>
         )}
 
@@ -135,23 +109,12 @@ export default function Track() {
           <div className="space-y-6">
             <div className="flex justify-center">
               <div className="bg-green-500 rounded-full p-3">
-                <svg
-                  className="w-12 h-12 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
+                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-white">Success!</h2>
-            <p className="text-gray-300">{message}</p>
+            <p className="text-white text-lg font-semibold">{message}</p>
           </div>
         )}
 
@@ -159,24 +122,12 @@ export default function Track() {
           <div className="space-y-6">
             <div className="flex justify-center">
               <div className="bg-yellow-500 rounded-full p-3">
-                <svg
-                  className="w-12 h-12 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                  />
+                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-white">Notice</h2>
-            <p className="text-gray-300">{message}</p>
-            <p className="text-sm text-gray-400">Redirecting to destination...</p>
+            <p className="text-white text-lg">{message}</p>
           </div>
         )}
 
@@ -184,24 +135,12 @@ export default function Track() {
           <div className="space-y-6">
             <div className="flex justify-center">
               <div className="bg-red-500 rounded-full p-3">
-                <svg
-                  className="w-12 h-12 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-white">Error</h2>
-            <p className="text-gray-300">{message}</p>
-            <p className="text-sm text-gray-400">Please contact support if this issue persists.</p>
+            <p className="text-white text-lg">{message}</p>
           </div>
         )}
       </div>

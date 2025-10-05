@@ -2,6 +2,10 @@
 
 Reva is a web application that connects marketers with promoters to drive authentic engagement through trackable links. Marketers create campaigns, promoters share them, and both benefit from verified clicks.
 
+## ⚠️ Security Notice
+
+**This MVP is for demo and testing purposes only.** It has a known security limitation with client-side IP capture that must be addressed before production deployment. See `SECURITY.md` for details and production recommendations.
+
 ## Features
 
 ### For Marketers
@@ -129,6 +133,8 @@ npm run preview
 - **Track**: Click processing and redirection handler
 
 ## Security Features
+
+⚠️ **Important**: This is an MVP with basic security. See `SECURITY.md` for limitations and production requirements.
 
 - Row Level Security (RLS) on all database tables
 - Click validation and fraud detection

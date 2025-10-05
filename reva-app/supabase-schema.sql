@@ -118,8 +118,9 @@ CREATE POLICY "Public can read tracking links by short code" ON tracking_links
   FOR SELECT USING (true);
 
 -- Clicks policies (public insert for tracking, but restricted reads)
+-- Force is_valid to false on client inserts - verification happens server-side via trigger
 CREATE POLICY "Anyone can insert clicks" ON clicks
-  FOR INSERT WITH CHECK (true);
+  FOR INSERT WITH CHECK (is_valid = false AND payout_amount IS NULL);
 
 CREATE POLICY "Promoters can view own clicks" ON clicks
   FOR SELECT USING (auth.uid() = promoter_id);
@@ -151,23 +152,60 @@ CREATE POLICY "System can insert earnings for valid clicks" ON earnings
     )
   );
 
--- Function to update remaining budget
-CREATE OR REPLACE FUNCTION update_campaign_budget()
+-- Function to verify and validate clicks server-side
+CREATE OR REPLACE FUNCTION verify_click()
 RETURNS TRIGGER AS $$
+DECLARE
+  campaign_payout DECIMAL(10, 2);
+  campaign_budget DECIMAL(10, 2);
+  campaign_active BOOLEAN;
+  recent_click_count INTEGER;
 BEGIN
-  IF NEW.is_valid = true THEN
+  -- Get campaign details
+  SELECT payout_per_click, remaining_budget, is_active
+  INTO campaign_payout, campaign_budget, campaign_active
+  FROM campaigns
+  WHERE id = NEW.campaign_id;
+
+  -- Check for recent clicks from same IP (rate limiting - 1 hour window)
+  SELECT COUNT(*)
+  INTO recent_click_count
+  FROM clicks
+  WHERE tracking_link_id = NEW.tracking_link_id
+    AND ip_address = NEW.ip_address
+    AND created_at > NOW() - INTERVAL '1 hour';
+
+  -- Validate click based on multiple criteria
+  IF campaign_active = true 
+     AND campaign_budget >= campaign_payout
+     AND recent_click_count = 0
+     AND NEW.user_agent IS NOT NULL
+     AND length(NEW.user_agent) > 10 THEN
+    -- Click is valid
+    NEW.is_valid := true;
+    NEW.payout_amount := campaign_payout;
+    
+    -- Update campaign budget
     UPDATE campaigns
-    SET remaining_budget = remaining_budget - NEW.payout_amount
+    SET remaining_budget = remaining_budget - campaign_payout
     WHERE id = NEW.campaign_id;
+    
+    -- Create earning record
+    INSERT INTO earnings (promoter_id, campaign_id, click_id, amount)
+    VALUES (NEW.promoter_id, NEW.campaign_id, NEW.id, campaign_payout);
+  ELSE
+    -- Click is invalid
+    NEW.is_valid := false;
+    NEW.payout_amount := 0;
   END IF;
+
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- Trigger to update budget on valid click
-DROP TRIGGER IF EXISTS on_valid_click ON clicks;
-CREATE TRIGGER on_valid_click
-  AFTER INSERT OR UPDATE ON clicks
+-- Trigger to verify clicks on insert
+DROP TRIGGER IF EXISTS on_click_insert ON clicks;
+CREATE TRIGGER on_click_insert
+  BEFORE INSERT ON clicks
   FOR EACH ROW
-  WHEN (NEW.is_valid = true)
-  EXECUTE FUNCTION update_campaign_budget();
+  EXECUTE FUNCTION verify_click();
