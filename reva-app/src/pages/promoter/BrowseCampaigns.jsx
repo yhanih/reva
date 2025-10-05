@@ -13,6 +13,7 @@ const BrowseCampaigns = () => {
   const [loading, setLoading] = useState(true);
   const [generatingLink, setGeneratingLink] = useState({});
   const [copiedLink, setCopiedLink] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     fetchCampaigns();
@@ -54,7 +55,7 @@ const BrowseCampaigns = () => {
     }
   };
 
-  const generateTrackingLink = async (campaignId) => {
+  const generateTrackingLink = async (campaignId, campaignTitle) => {
     setGeneratingLink(prev => ({ ...prev, [campaignId]: true }));
     try {
       const shortCode = nanoid();
@@ -78,6 +79,9 @@ const BrowseCampaigns = () => {
           ? { ...campaign, existingLink: shortCode }
           : campaign
       ));
+
+      setSuccessMessage(`✓ Tracking link generated for "${campaignTitle}"! Start sharing to earn.`);
+      setTimeout(() => setSuccessMessage(''), 5000);
     } catch (err) {
       console.error('Error generating link:', err);
       alert('Failed to generate tracking link. Please try again.');
@@ -118,13 +122,28 @@ const BrowseCampaigns = () => {
       </header>
 
       <main className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        {successMessage && (
+          <div className="mb-6 p-4 bg-green-500/10 border border-green-500/50 rounded-lg animate-fade-in">
+            <p className="text-sm text-green-400">{successMessage}</p>
+          </div>
+        )}
+
+        {!loading && campaigns.length > 0 && (
+          <div className="mb-6 p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg">
+            <p className="text-sm text-purple-300">
+              💡 <strong>Pro Tip:</strong> Share your tracking links on social media, blogs, or with your audience. You earn for every valid click!
+            </p>
+          </div>
+        )}
+
         {loading ? (
           <div className="text-center py-12">
             <div className="inline-block w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
           </div>
         ) : campaigns.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-400 text-lg">No active campaigns available at the moment.</p>
+            <p className="text-gray-400 text-lg mb-4">No active campaigns available at the moment.</p>
+            <p className="text-gray-500 text-sm">Check back soon for new opportunities!</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -163,7 +182,7 @@ const BrowseCampaigns = () => {
                     </div>
                   ) : (
                     <button
-                      onClick={() => generateTrackingLink(campaign.id)}
+                      onClick={() => generateTrackingLink(campaign.id, campaign.title)}
                       disabled={generatingLink[campaign.id]}
                       className="w-full px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg hover:opacity-90 transition disabled:opacity-50"
                     >

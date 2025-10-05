@@ -12,6 +12,7 @@ import BrowseCampaigns from './pages/promoter/BrowseCampaigns';
 import MyLinks from './pages/promoter/MyLinks';
 import Earnings from './pages/promoter/Earnings';
 import Track from './pages/Track';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthProvider>
     </Router>
