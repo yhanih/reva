@@ -6,11 +6,11 @@ const Hero = () => {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <div className="overflow-x-hidden bg-white relative">
-            <div className="absolute inset-0 overflow-hidden">
+        <div className="overflow-x-hidden relative">
+            <div className="absolute inset-0 overflow-hidden z-0">
                 <Pattern />
             </div>
-            <header className="py-4 md:py-6 relative z-10">
+            <header className="py-4 md:py-6 relative z-20">
                 <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between">
                         <div className="flex-shrink-0">
@@ -88,8 +88,8 @@ const Hero = () => {
                 </div>
             </header>
 
-            <section className="bg-white relative">
-                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-10">
+            <section className="relative">
+                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-20">
                     <div className="max-w-2xl mx-auto text-center">
                         <h1 className="px-6 text-lg font-medium text-gray-600 tracking-wide">Performance marketing platform connecting marketers and promoters</h1>
                         <p className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight tracking-tight">
@@ -124,9 +124,9 @@ const Hero = () => {
                     </div>
                 </div>
 
-                <div className="pb-12 bg-white">
+                <div className="pb-12">
                     <div className="relative">
-                        <div className="absolute inset-0 h-2/3 bg-white"></div>
+                        <div className="absolute inset-0 h-2/3"></div>
                         <div className="relative mx-auto">
                             <div className="lg:max-w-6xl lg:mx-auto">
                                 <img className="transform scale-110" src="https://cdn.rareblocks.xyz/collection/clarity/images/hero/2/illustration.png" alt="" />

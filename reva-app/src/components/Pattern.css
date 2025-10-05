@@ -1,8 +1,13 @@
 .grid-wrapper {
   min-height: 100%;
   width: 100%;
-  position: relative;
-  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 0;
 }
 
 .grid-background {
@@ -11,18 +16,18 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 0;
-  background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px),
-    linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
-  background-size: 20px 30px;
+  z-index: 1;
+  background-image: linear-gradient(to right, #cbd5e1 1px, transparent 1px),
+    linear-gradient(to bottom, #cbd5e1 1px, transparent 1px);
+  background-size: 40px 40px;
   -webkit-mask-image: radial-gradient(
-    ellipse 70% 60% at 50% 0%,
-    #000 60%,
+    ellipse 80% 70% at 50% 0%,
+    #000 70%,
     transparent 100%
   );
   mask-image: radial-gradient(
-    ellipse 70% 60% at 50% 0%,
-    #000 60%,
+    ellipse 80% 70% at 50% 0%,
+    #000 70%,
     transparent 100%
   );
 }
