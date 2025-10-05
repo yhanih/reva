@@ -1,0 +1,170 @@
+{
+  "context": "UI Audit for Reva Hero Section",
+  "meta": {
+    "page": "Landing Page - Hero Section",
+    "brand": "Reva",
+    "goal": "Identify UI/UX issues and provide actionable fixes for responsive, accessible, high-conversion SaaS hero."
+  },
+  "audit": {
+    "messaging_and_structure": {
+      "issues": [
+        "Headline promise (link monetization) doesn't match the dashboard mockup (email metrics).",
+        "No social proof or trust elements near fold.",
+        "Two equally-weighted CTAs create cognitive friction.",
+        "Sub-CTA microcopy is vague and unpersuasive.",
+        "Navigation is generic and doesn't reflect dual audiences (Marketer / Promoter)."
+      ],
+      "fixes": [
+        "Replace mockup with campaign/link verification UI.",
+        "Add trust badges or case stats under CTAs.",
+        "Collapse CTAs to one primary with role selection later.",
+        "Use more concrete microcopy with measurable claims.",
+        "Add segmented nav or tabs for different audiences."
+      ]
+    },
+    "visual_design": {
+      "issues": [
+        "Gradient halo behind dashboard is muddy and looks accidental.",
+        "Brand colors are underdefined, leading to generic SaaS look.",
+        "Button hover states lack contrast and interaction clarity.",
+        "Logo is undersized and cramped at top.",
+        "Typography hierarchy is uneven (weak pre-heading, heavy H1)."
+      ],
+      "fixes": [
+        "Use deliberate radial gradient with controlled stops.",
+        "Introduce a single bold accent color for highlights.",
+        "Define hover/focus states with stronger contrast.",
+        "Increase logo size and padding.",
+        "Refine typographic rhythm with proper line heights and scaling."
+      ]
+    },
+    "content_details": {
+      "issues": [
+        "Spelling error: 'Content Calender'.",
+        "Mockup metrics reflect email data, not Reva's core value (link verification & payouts).",
+        "Table columns mismatch platform features."
+      ],
+      "fixes": [
+        "Fix spelling mistakes.",
+        "Replace mock KPIs with valid clicks, fraud detection, payout data.",
+        "Align UI elements with product narrative."
+      ]
+    },
+    "accessibility": {
+      "issues": [
+        "Insufficient contrast in tagline and nav links.",
+        "No visible keyboard focus states in navigation.",
+        "Missing alt text / semantic roles for dashboard image."
+      ],
+      "fixes": [
+        "Ensure text contrast meets WCAG 4.5:1.",
+        "Add proper focus outlines and keyboard navigation.",
+        "Add alt text or role='presentation' with descriptive caption."
+      ]
+    },
+    "responsive_behavior": {
+      "issues": [
+        "H1 text likely wraps poorly on mobile.",
+        "Side-by-side CTAs will crowd small screens.",
+        "Dashboard image becomes illegible when scaled down.",
+        "No mobile nav menu is visible.",
+        "No entrance or micro-animations to guide attention."
+      ],
+      "fixes": [
+        "Use fluid clamp() typography.",
+        "Stack CTAs vertically on small screens.",
+        "Serve a cropped mobile variant of mockup.",
+        "Implement clean slide-in mobile nav.",
+        "Add subtle animations with short durations."
+      ]
+    },
+    "performance": {
+      "issues": [
+        "Large hero image likely delays Largest Contentful Paint (LCP).",
+        "No reserved height for hero image → layout shift risk.",
+        "Overuse of blur/shadow may impact paint performance."
+      ],
+      "fixes": [
+        "Convert hero mockup to optimized AVIF/WebP and lazy-load.",
+        "Reserve aspect ratio for hero image.",
+        "Use gradients instead of heavy blurs."
+      ]
+    },
+    "conversion_ux": {
+      "issues": [
+        "Equal CTAs split traffic and confuse primary action.",
+        "No risk reducers (trial info, free tier, etc.).",
+        "No fraud protection messaging despite being core USP."
+      ],
+      "fixes": [
+        "Use single primary CTA and segment later.",
+        "Add trust/risk-reduction line (e.g. free trial, no card).",
+        "Add fraud protection badge or short copy."
+      ]
+    },
+    "analytics_experimentation": {
+      "issues": [
+        "No clear tracking structure for CTA links.",
+        "No variant-ready headline or CTA copy."
+      ],
+      "fixes": [
+        "Add UTM parameters for role selection.",
+        "Prepare A/B headline and CTA variants."
+      ]
+    },
+    "security_trust": {
+      "issues": [
+        "No visible human verification or privacy cues at signup stage."
+      ],
+      "fixes": [
+        "Add bot protection (e.g. Turnstile) and a privacy statement."
+      ]
+    }
+  },
+  "spec_recommendations": {
+    "grid": {
+      "max_container_px": 1280,
+      "hero_top_padding_desktop_px": 120,
+      "hero_top_padding_mobile_px": 80,
+      "h1_max_width_ch": 24,
+      "subhead_max_width_ch": 65
+    },
+    "typography": {
+      "h1": "clamp(28px, 6vw, 56px)",
+      "subhead": "clamp(16px, 2.2vw, 20px)",
+      "badge_style": "small-caps, pill background, medium weight"
+    },
+    "colors": {
+      "text_primary": "#0F172A",
+      "accent_gradient": "linear-gradient(90deg, #6366F1, #22D3EE)",
+      "focus_ring": "indigo-400 with 2px offset"
+    },
+    "buttons": {
+      "primary_hover": "darken + translate-y-1",
+      "secondary_hover": "border darken, light bg tint",
+      "focus_state": "visible ring on both"
+    },
+    "image": {
+      "format": "AVIF",
+      "max_size_kb": 120,
+      "width_px": 1600,
+      "mobile_variant_width_px": 960
+    }
+  },
+  "copy_examples": {
+    "badge": "Performance marketing, made honest",
+    "headline": "Pay only for verified clicks",
+    "subheadline": "Reva connects marketers with promoters and validates every click, so budgets go to real people, not bots.",
+    "cta_primary": "Get started",
+    "proof_row": "Trusted by 1,200+ campaigns • $3.2M paid out"
+  },
+  "priority_actions": [
+    "Replace mismatched mockup image with feature-relevant visual.",
+    "Unify CTAs to reduce friction and improve conversion.",
+    "Add proof and trust elements under CTAs.",
+    "Fix typography and layout rhythm.",
+    "Implement responsive clamp sizing and proper mobile CTA stacking.",
+    "Optimize hero image and reserve layout space.",
+    "Add clear fraud protection messaging."
+  ]
+}
