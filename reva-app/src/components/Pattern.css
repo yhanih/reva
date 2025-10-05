@@ -20,18 +20,20 @@
   background-image: linear-gradient(to right, #cbd5e1 1px, transparent 1px),
     linear-gradient(to bottom, #cbd5e1 1px, transparent 1px);
   background-size: 40px 40px;
-  -webkit-mask-image: radial-gradient(
-    circle at 50% 40%,
-    #000 5%,
-    rgba(0, 0, 0, 0.6) 20%,
-    rgba(0, 0, 0, 0.3) 35%,
-    transparent 50%
-  );
-  mask-image: radial-gradient(
-    circle at 50% 40%,
-    #000 5%,
-    rgba(0, 0, 0, 0.6) 20%,
-    rgba(0, 0, 0, 0.3) 35%,
-    transparent 50%
-  );
+  -webkit-mask-image: 
+    radial-gradient(
+      ellipse 60% 50% at 50% 0%,
+      #000 0%,
+      rgba(0, 0, 0, 0.7) 30%,
+      rgba(0, 0, 0, 0.3) 60%,
+      transparent 100%
+    );
+  mask-image: 
+    radial-gradient(
+      ellipse 60% 50% at 50% 0%,
+      #000 0%,
+      rgba(0, 0, 0, 0.7) 30%,
+      rgba(0, 0, 0, 0.3) 60%,
+      transparent 100%
+    );
 }
