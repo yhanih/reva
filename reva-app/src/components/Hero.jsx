@@ -197,14 +197,39 @@ const Hero = () => {
                 </svg>
               </div>
 
-              <div className="relative w-full max-w-md mx-auto flex items-center justify-center">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-64 h-64 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 p-1">
-                    <div className="flex items-center justify-center gap-4 w-full h-full bg-black rounded-full">
-                      <svg className="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                      </svg>
-                      <div className="text-5xl">💰</div>
+              <div className="relative w-full max-w-md mx-auto h-96 flex items-center justify-center">
+                <div className="relative w-full h-full">
+                  <div className="absolute top-8 left-1/4 z-10">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full blur-xl opacity-50"></div>
+                      <div className="relative w-32 h-32 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 p-0.5">
+                        <div className="flex items-center justify-center w-full h-full bg-black rounded-full">
+                          <svg className="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <svg className="absolute top-24 left-1/4 w-48 h-48 z-0" viewBox="0 0 200 200">
+                    <defs>
+                      <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.6" />
+                        <stop offset="100%" stopColor="#a855f7" stopOpacity="0.6" />
+                      </linearGradient>
+                    </defs>
+                    <line x1="50" y1="50" x2="120" y2="140" stroke="url(#lineGradient)" strokeWidth="2" strokeDasharray="4 4" />
+                  </svg>
+
+                  <div className="absolute bottom-12 right-1/4 z-10">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full blur-xl opacity-50"></div>
+                      <div className="relative w-32 h-32 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 p-0.5">
+                        <div className="flex items-center justify-center w-full h-full bg-black rounded-full">
+                          <div className="text-5xl">💰</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
