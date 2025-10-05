@@ -6,8 +6,11 @@ const Hero = () => {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <div className="overflow-x-hidden bg-white">
-            <header className="py-4 md:py-6">
+        <div className="overflow-x-hidden bg-white relative">
+            <div className="absolute inset-0 overflow-hidden">
+                <Pattern />
+            </div>
+            <header className="py-4 md:py-6 relative z-10">
                 <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between">
                         <div className="flex-shrink-0">
@@ -86,9 +89,6 @@ const Hero = () => {
             </header>
 
             <section className="bg-white relative">
-                <div className="absolute inset-0 overflow-hidden">
-                    <Pattern />
-                </div>
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-10">
                     <div className="max-w-2xl mx-auto text-center">
                         <h1 className="px-6 text-lg font-medium text-gray-600 tracking-wide">Performance marketing platform connecting marketers and promoters</h1>
