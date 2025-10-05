@@ -40,6 +40,9 @@ const Hero = () => {
                         </div>
 
                         <nav className="hidden ml-10 mr-auto space-x-10 lg:ml-20 lg:space-x-12 md:flex md:items-center md:justify-start">
+                            <a href="#how-it-works" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">How It Works</a>
+                            <a href="#for-marketers" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">For Marketers</a>
+                            <a href="#for-promoters" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">For Promoters</a>
                             <Link to="/login" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">Login</Link>
                         </nav>
 
@@ -52,6 +55,9 @@ const Hero = () => {
                     {expanded && (
                         <nav>
                             <div className="flex flex-col pt-8 pb-4 space-y-6">
+                                <a href="#how-it-works" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">How It Works</a>
+                                <a href="#for-marketers" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">For Marketers</a>
+                                <a href="#for-promoters" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">For Promoters</a>
                                 <Link to="/login" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">Login</Link>
 
                                 <div className="relative inline-flex items-center justify-center group">
