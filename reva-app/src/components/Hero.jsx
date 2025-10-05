@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Pattern from './Pattern';
-import HeadlinePattern from './HeadlinePattern';
 
 const Hero = () => {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <div className="overflow-x-hidden bg-white relative">
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <Pattern />
-            </div>
-            <header className="py-4 md:py-6 relative z-10">
+        <div className="overflow-x-hidden bg-white">
+            <header className="py-4 md:py-6">
                 <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between">
                         <div className="flex-shrink-0">
@@ -89,12 +85,14 @@ const Hero = () => {
                 </div>
             </header>
 
-            <section className="pt-12 bg-white sm:pt-16 relative z-10">
-                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="max-w-2xl mx-auto text-center relative">
-                        <HeadlinePattern />
-                        <h1 className="px-6 text-lg font-medium text-gray-600 tracking-wide relative z-10">Performance marketing platform connecting marketers and promoters</h1>
-                        <p className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight tracking-tight relative z-10">
+            <section className="pt-12 bg-white sm:pt-16 relative">
+                <div className="absolute inset-0 overflow-hidden">
+                    <Pattern />
+                </div>
+                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-10">
+                    <div className="max-w-2xl mx-auto text-center">
+                        <h1 className="px-6 text-lg font-medium text-gray-600 tracking-wide">Performance marketing platform connecting marketers and promoters</h1>
+                        <p className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight tracking-tight">
                             Turn your visitors into profitable
                             <span className="relative inline-flex sm:inline">
                                 <span className="bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-lg filter opacity-30 w-full h-full absolute inset-0"></span>
