@@ -12,7 +12,7 @@ const Hero = () => {
                     <div className="flex items-center justify-between">
                         <div className="shrink-0">
                             <Link to="/" className="flex">
-                                <span className="text-3xl font-bold bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">Reva</span>
+                                <span className="text-3xl font-bold text-white">Reva</span>
                             </Link>
                         </div>
 
