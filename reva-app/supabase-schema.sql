@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS earnings (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   promoter_id UUID REFERENCES profiles(id) NOT NULL,
   campaign_id UUID REFERENCES campaigns(id) NOT NULL,
-  click_id UUID REFERENCES clicks(id) NOT NULL,
+  click_id UUID REFERENCES clicks(id) NOT NULL UNIQUE,
   amount DECIMAL(10, 2) NOT NULL,
   status TEXT NOT NULL CHECK (status IN ('pending', 'approved', 'paid')) DEFAULT 'pending',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -114,6 +114,9 @@ CREATE POLICY "Marketers can view campaign tracking links" ON tracking_links
     )
   );
 
+CREATE POLICY "Public can read tracking links by short code" ON tracking_links
+  FOR SELECT USING (true);
+
 -- Clicks policies (public insert for tracking, but restricted reads)
 CREATE POLICY "Anyone can insert clicks" ON clicks
   FOR INSERT WITH CHECK (true);
@@ -134,24 +137,19 @@ CREATE POLICY "Marketers can view campaign clicks" ON clicks
 CREATE POLICY "Promoters can view own earnings" ON earnings
   FOR SELECT USING (auth.uid() = promoter_id);
 
-CREATE POLICY "System can insert earnings" ON earnings
-  FOR INSERT WITH CHECK (true);
-
--- Functions for automatic profile creation
-CREATE OR REPLACE FUNCTION public.handle_new_user()
-RETURNS TRIGGER AS $$
-BEGIN
-  INSERT INTO public.profiles (id, email, role)
-  VALUES (NEW.id, NEW.email, NEW.raw_user_meta_data->>'role');
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
-
--- Trigger for new user creation
-DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
-CREATE TRIGGER on_auth_user_created
-  AFTER INSERT ON auth.users
-  FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
+CREATE POLICY "System can insert earnings for valid clicks" ON earnings
+  FOR INSERT WITH CHECK (
+    EXISTS (
+      SELECT 1 FROM clicks
+      WHERE clicks.id = click_id
+      AND clicks.promoter_id = earnings.promoter_id
+      AND clicks.campaign_id = earnings.campaign_id
+    )
+    AND NOT EXISTS (
+      SELECT 1 FROM earnings AS existing_earnings
+      WHERE existing_earnings.click_id = earnings.click_id
+    )
+  );
 
 -- Function to update remaining budget
 CREATE OR REPLACE FUNCTION update_campaign_budget()

@@ -11,6 +11,7 @@ import CampaignDetails from './pages/marketer/CampaignDetails';
 import BrowseCampaigns from './pages/promoter/BrowseCampaigns';
 import MyLinks from './pages/promoter/MyLinks';
 import Earnings from './pages/promoter/Earnings';
+import Payouts from './pages/promoter/Payouts';
 import Track from './pages/Track';
 import NotFound from './pages/NotFound';
 import './App.css';
@@ -77,6 +78,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Earnings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/promoter/payouts"
+            element={
+              <ProtectedRoute>
+                <Payouts />
               </ProtectedRoute>
             }
           />

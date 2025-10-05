@@ -424,6 +424,12 @@ const Dashboard = () => {
                       >
                         Earnings →
                       </button>
+                      <button
+                        onClick={() => navigate('/promoter/payouts')}
+                        className="px-6 py-3 text-base font-semibold text-green-400 hover:text-green-300 transition"
+                      >
+                        Payouts →
+                      </button>
                     </div>
                   </>
                 )}
