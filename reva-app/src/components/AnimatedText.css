@@ -1,14 +1,16 @@
 .animated-text-wrapper {
   display: inline-block;
   position: relative;
+  margin: 0 0.15em;
 }
 
 .animated-words {
   overflow: hidden;
   position: relative;
   display: inline-block;
-  height: 1.2em;
+  height: 1.4em;
   vertical-align: bottom;
+  line-height: 1.4em;
 }
 
 .animated-words::after {
@@ -16,10 +18,11 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    white 10%,
-    transparent 30%,
-    transparent 70%,
-    white 90%
+    to bottom,
+    white 0%,
+    transparent 25%,
+    transparent 75%,
+    white 100%
   );
   z-index: 20;
   pointer-events: none;
@@ -28,20 +31,21 @@
 .animated-word {
   display: block;
   height: 100%;
-  animation: slideText 9s infinite;
+  line-height: 1.4em;
+  animation: slideText 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes slideText {
-  0%, 30% {
+  0%, 28% {
     transform: translateY(0%);
   }
-  33%, 63% {
+  33%, 61% {
     transform: translateY(-100%);
   }
-  66%, 96% {
+  66%, 94% {
     transform: translateY(-200%);
   }
   100% {
-    transform: translateY(0%);
+    transform: translateY(-300%);
   }
 }
