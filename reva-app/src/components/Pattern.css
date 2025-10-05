@@ -3,6 +3,7 @@
   width: 100%;
   position: relative;
   background-color: transparent;
+  pointer-events: none;
 }
 
 .grid-background {
@@ -15,14 +16,16 @@
   background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px),
     linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
   background-size: 20px 30px;
-  -webkit-mask-image: radial-gradient(
-    ellipse 80% 30% at 50% 0%,
-    #000 20%,
-    transparent 50%
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 200px,
+    transparent 400px
   );
-  mask-image: radial-gradient(
-    ellipse 80% 30% at 50% 0%,
-    #000 20%,
-    transparent 50%
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 200px,
+    transparent 400px
   );
 }
