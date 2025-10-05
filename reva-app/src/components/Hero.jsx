@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Pattern from './Pattern';
 
 const Hero = () => {
     const [expanded, setExpanded] = useState(false);
@@ -84,8 +85,11 @@ const Hero = () => {
                 </div>
             </header>
 
-            <section className="pt-12 bg-white sm:pt-16">
-                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <section className="pt-12 bg-white sm:pt-16 relative">
+                <div className="absolute inset-0 overflow-hidden">
+                    <Pattern />
+                </div>
+                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-10">
                     <div className="max-w-2xl mx-auto text-center">
                         <h1 className="px-6 text-lg font-medium text-gray-600 tracking-wide">Performance marketing platform connecting marketers and promoters</h1>
                         <p className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight tracking-tight">
