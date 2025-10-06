@@ -215,7 +215,7 @@ const Hero = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
                             <Link
                                 to="/signup"
-                                className={`group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-300 rounded-2xl ${
+                                className={`group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-300 rounded-lg ${
                                     customerType === 'marketer' 
                                         ? 'bg-cyan-600 hover:bg-cyan-700' 
                                         : 'bg-purple-600 hover:bg-purple-700'
@@ -226,7 +226,7 @@ const Hero = () => {
                             
                             <Link
                                 to="/login"
-                                className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-2xl transition-all duration-300 hover:border-gray-300 hover:shadow-md transform hover:scale-[1.02]"
+                                className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-lg transition-all duration-300 hover:border-gray-300 hover:shadow-md transform hover:scale-[1.02]"
                             >
                                 <span className="relative z-10">Sign In</span>
                             </Link>
