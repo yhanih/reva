@@ -114,7 +114,7 @@ const Hero = () => {
                         </div>
 
                         <div className="flex lg:hidden">
-                            <button type="button" className="text-gray-900" onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
+                            <button type="button" className="p-2 text-gray-900 rounded-lg hover:bg-gray-100 touch-target" onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
                                 {!expanded && (
                                     <span aria-hidden="true">
                                         <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -155,29 +155,75 @@ const Hero = () => {
                         </div>
                     </div>
 
+                    {/* Mobile Full-Screen Overlay Menu */}
                     {expanded && (
-                        <nav>
-                            <div className="px-1 py-8">
-                                <div className="grid gap-y-6">
-                                    <a href="#features" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Features</a>
-
-                                    <a href="#how-it-works" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">How It Works</a>
-
-                                    <a href="#pricing" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Pricing</a>
-
-                                    <a href="#" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Login</a>
-
-                                    <a
-                                        href="#"
-                                        title=""
-                                        className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold leading-7 text-white transition-all duration-200 bg-gray-900 border border-transparent rounded-xl hover:bg-gray-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-                                        role="button"
-                                    >
-                                        Get Started
+                        <div className="lg:hidden fixed inset-0 z-50 bg-white">
+                            <div className="h-full flex flex-col">
+                                {/* Mobile Menu Header */}
+                                <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
+                                    <a href="#" title="" className="flex">
+                                        <span className="text-2xl font-bold tracking-tight text-gray-900">Reva</span>
                                     </a>
+                                    <button 
+                                        type="button" 
+                                        className="p-2 text-gray-900 rounded-lg hover:bg-gray-100 touch-target" 
+                                        onClick={() => setExpanded(false)}
+                                    >
+                                        <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
                                 </div>
+                                
+                                {/* Mobile Menu Content */}
+                                <nav className="flex-1 overflow-y-auto">
+                                    <div className="px-4 py-6">
+                                        <div className="space-y-1">
+                                            <a 
+                                                href="#features" 
+                                                onClick={() => setExpanded(false)}
+                                                className="block px-4 py-3 text-lg font-medium text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
+                                            >
+                                                Features
+                                            </a>
+                                            <a 
+                                                href="#how-it-works" 
+                                                onClick={() => setExpanded(false)}
+                                                className="block px-4 py-3 text-lg font-medium text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
+                                            >
+                                                How It Works
+                                            </a>
+                                            <a 
+                                                href="#pricing" 
+                                                onClick={() => setExpanded(false)}
+                                                className="block px-4 py-3 text-lg font-medium text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
+                                            >
+                                                Pricing
+                                            </a>
+                                        </div>
+                                        
+                                        <div className="pt-6 mt-6 border-t border-gray-100">
+                                            <a 
+                                                href="#" 
+                                                onClick={() => setExpanded(false)}
+                                                className="block px-4 py-3 text-lg font-medium text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
+                                            >
+                                                Login
+                                            </a>
+                                            <div className="mt-4 px-4">
+                                                <a
+                                                    href="#"
+                                                    onClick={() => setExpanded(false)}
+                                                    className="flex items-center justify-center w-full px-6 py-3 text-base font-semibold text-white bg-gray-900 rounded-xl hover:bg-gray-700 transition-all duration-200"
+                                                >
+                                                    Get Started
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </nav>
                             </div>
-                        </nav>
+                        </div>
                     )}
                 </div>
             </header>
@@ -271,7 +317,7 @@ const Hero = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
                             <Link
                                 to="/signup"
-                                className={`group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-300 rounded-lg ${
+                                className={`group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base font-semibold text-white transition-all duration-300 rounded-lg btn-touch btn-touch-mobile ${
                                     customerType === 'marketer' 
                                         ? 'bg-cyan-600 hover:bg-cyan-700' 
                                         : 'bg-purple-600 hover:bg-purple-700'
@@ -282,7 +328,7 @@ const Hero = () => {
                             
                             <Link
                                 to="/login"
-                                className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-lg transition-all duration-300 hover:border-gray-300 hover:shadow-md transform hover:scale-[1.02]"
+                                className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-lg btn-touch btn-touch-mobile transition-all duration-300 hover:border-gray-300 hover:shadow-md transform hover:scale-[1.02]"
                             >
                                 <span className="relative z-10">Sign In</span>
                             </Link>
@@ -349,11 +395,11 @@ const Hero = () => {
                         <div className="mt-20 pb-12">
                             <div className="relative">
                                 <div className="absolute inset-0 h-2/3 bg-gray-50"></div>
-                                <div className="relative mx-auto">
+                                <div className="relative mx-auto px-4 sm:px-6 lg:px-8">
                                     <div className="lg:max-w-6xl lg:mx-auto">
-                                        <div className="transform scale-110">
-                                            <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-200 p-2">
-                                                <div className="bg-white rounded-2xl overflow-hidden">
+                                        <div className="transform scale-75 sm:scale-90 md:scale-100 lg:scale-110">
+                                            <div className="relative bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-xl sm:shadow-2xl border border-gray-200 p-1 sm:p-2">
+                                                <div className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden">
                                                     {/* Mock browser bar */}
                                                     <div className="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
                                                         <div className="flex gap-1.5">
@@ -371,7 +417,7 @@ const Hero = () => {
                                                     {/* Dashboard content */}
                                                     <div className="flex bg-gray-50">
                                                         {/* Sidebar */}
-                                                        <div className="w-48 bg-white border-r border-gray-200 p-4">
+                                                        <div className="hidden md:block w-32 lg:w-48 bg-white border-r border-gray-200 p-2 lg:p-4">
                                                             <div className="space-y-1">
                                                                 <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 text-blue-600 rounded-lg text-xs font-medium">
                                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -441,8 +487,8 @@ const Hero = () => {
                                                             </div>
                                                             
                                                             {/* Metrics cards */}
-                                                            <div className="grid grid-cols-4 gap-3 mb-6">
-                                                                <div className="bg-white rounded-lg p-3 border border-gray-200">
+                                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-6">
+                                                                <div className="bg-white rounded-lg p-2 sm:p-3 border border-gray-200">
                                                                     <div className="flex items-center justify-between mb-1">
                                                                         <span className="text-xs text-gray-500">Conversions</span>
                                                                         <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
@@ -452,7 +498,7 @@ const Hero = () => {
                                                                     <div className="text-xl font-bold text-gray-900">3,536</div>
                                                                     <div className="text-xs text-green-600">+18.4%</div>
                                                                 </div>
-                                                                <div className="bg-white rounded-lg p-3 border border-gray-200">
+                                                                <div className="bg-white rounded-lg p-2 sm:p-3 border border-gray-200">
                                                                     <div className="flex items-center justify-between mb-1">
                                                                         <span className="text-xs text-gray-500">Clicked Links</span>
                                                                         <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
@@ -462,7 +508,7 @@ const Hero = () => {
                                                                     <div className="text-xl font-bold text-gray-900">1,424</div>
                                                                     <div className="text-xs text-blue-600">+10.0%</div>
                                                                 </div>
-                                                                <div className="bg-white rounded-lg p-3 border border-gray-200">
+                                                                <div className="bg-white rounded-lg p-2 sm:p-3 border border-gray-200">
                                                                     <div className="flex items-center justify-between mb-1">
                                                                         <span className="text-xs text-gray-500">Undetermined</span>
                                                                         <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
@@ -472,7 +518,7 @@ const Hero = () => {
                                                                     <div className="text-xl font-bold text-gray-900">153</div>
                                                                     <div className="text-xs text-yellow-600">+1.5%</div>
                                                                 </div>
-                                                                <div className="bg-white rounded-lg p-3 border border-gray-200">
+                                                                <div className="bg-white rounded-lg p-2 sm:p-3 border border-gray-200">
                                                                     <div className="flex items-center justify-between mb-1">
                                                                         <span className="text-xs text-gray-500">Bounced</span>
                                                                         <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
@@ -484,9 +530,9 @@ const Hero = () => {
                                                                 </div>
                                                             </div>
                                                             
-                                                            <div className="grid grid-cols-2 gap-4">
+                                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
                                                                 {/* Campaign Reports */}
-                                                                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                                                                <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200">
                                                                     <div className="flex items-center justify-between mb-3">
                                                                         <h3 className="text-sm font-semibold text-gray-900">Campaign Reports</h3>
                                                                         <button className="text-xs text-gray-500 flex items-center gap-1">
@@ -543,7 +589,7 @@ const Hero = () => {
                                                                 </div>
                                                                 
                                                                 {/* Sales Report */}
-                                                                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                                                                <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200">
                                                                     <div className="flex items-center justify-between mb-3">
                                                                         <h3 className="text-sm font-semibold text-gray-900">Sales Report</h3>
                                                                         <select className="text-xs text-gray-500 border-0 focus:ring-0">
@@ -611,7 +657,7 @@ const Hero = () => {
                 <section id="features" className="py-12 bg-white sm:py-16 lg:py-20">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="text-center">
-                            <h2 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl xl:text-5xl font-pj">Make every step user-centric</h2>
+                            <h2 className="text-fluid-lg font-bold leading-tight text-gray-900 font-pj">Make every step user-centric</h2>
                             <p className="mt-4 text-base leading-7 text-gray-600 sm:mt-8 font-pj">Lorem ipsum dolor sit amet, consectetur adipis elit</p>
                         </div>
 
@@ -704,7 +750,7 @@ const Hero = () => {
                 <section id="how-it-works" className="py-10 bg-white sm:py-16 lg:py-24">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="max-w-2xl mx-auto text-center">
-                            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">How does it work?</h2>
+                            <h2 className="text-fluid-lg font-bold leading-tight text-black">How does it work?</h2>
                             <p className="max-w-lg mx-auto mt-4 text-base leading-relaxed text-gray-600">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis.</p>
                         </div>
 
@@ -746,13 +792,13 @@ const Hero = () => {
                 <section id="pricing" className="py-10 bg-white sm:py-16 lg:py-24">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="max-w-xl mx-auto text-center">
-                            <h2 className="text-4xl font-bold text-black lg:text-5xl sm:text-5xl">Pricing & Plans</h2>
+                            <h2 className="text-fluid-lg font-bold text-black">Pricing & Plans</h2>
                             <p className="mt-4 text-lg leading-relaxed text-gray-600">Amet minim mollit non deserunt ullam co est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
                         </div>
 
                         {/* Desktop View - Table */}
-                        <div className="hidden mt-16 lg:block">
-                            <table className="w-full">
+                        <div className="hidden mt-16 md:block overflow-x-auto">
+                            <table className="w-full min-w-[640px]">
                                 <thead>
                                     <tr>
                                         <th className="py-8 pr-4"></th>
@@ -932,8 +978,8 @@ const Hero = () => {
                         </div>
 
                         {/* Mobile View */}
-                        <div className="block mt-12 border-t border-b border-gray-200 divide-y divide-gray-200 lg:hidden">
-                            <div className="grid grid-cols-4 text-center divide-x divide-gray-200">
+                        <div className="block mt-12 border-t border-b border-gray-200 divide-y divide-gray-200 md:hidden">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 text-center divide-x divide-gray-200">
                                 <div className="px-2 py-2">
                                     <span className="text-sm font-medium text-blue-600"> Free </span>
                                     <p className="mt-2 text-xl font-bold">$0</p>
@@ -963,7 +1009,7 @@ const Hero = () => {
                                 <p className="font-semibold">Website number</p>
                             </div>
 
-                            <div className="grid grid-cols-4 text-center divide-x divide-gray-200">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 text-center divide-x divide-gray-200">
                                 <div className="px-2 py-2">01</div>
                                 <div className="px-2 py-2">10</div>
                                 <div className="px-2 py-2">50</div>
@@ -974,7 +1020,7 @@ const Hero = () => {
                                 <p className="font-semibold">Server storage</p>
                             </div>
 
-                            <div className="grid grid-cols-4 text-center divide-x divide-gray-200">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 text-center divide-x divide-gray-200">
                                 <div className="px-2 py-2">100 GB</div>
                                 <div className="px-2 py-2">500 GB</div>
                                 <div className="px-2 py-2">1 TB</div>
@@ -985,14 +1031,14 @@ const Hero = () => {
                                 <p className="font-semibold">Database</p>
                             </div>
 
-                            <div className="grid grid-cols-4 text-center divide-x divide-gray-200">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 text-center divide-x divide-gray-200">
                                 <div className="px-2 py-2">-</div>
                                 <div className="px-2 py-2">15</div>
                                 <div className="px-2 py-2">Unlimited</div>
                                 <div className="px-2 py-2">Unlimited</div>
                             </div>
 
-                            <div className="grid grid-cols-4 text-center divide-x divide-gray-200">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 text-center divide-x divide-gray-200">
                                 <div className="px-1 py-2 sm:px-4">
                                     <span className="text-sm font-medium text-blue-600"> Free </span>
                                     <p className="mt-2 text-xl font-bold">$0</p>
@@ -1028,8 +1074,8 @@ const Hero = () => {
                 {/* Footer Section */}
                 <section className="py-10 bg-gray-50 sm:pt-16 lg:pt-24">
                     <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-                        <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
-                            <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-12 gap-x-8 sm:gap-x-12">
+                            <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
                                 <img className="w-auto h-9" src="https://cdn.rareblocks.xyz/collection/celebration/images/logo.svg" alt="" />
 
                                 <p className="text-base leading-relaxed text-gray-600 mt-7">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
@@ -1123,7 +1169,7 @@ const Hero = () => {
                                 </ul>
                             </div>
 
-                            <div className="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
+                            <div className="col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
                                 <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">Subscribe to newsletter</p>
 
                                 <form action="#" method="POST" className="mt-6">
