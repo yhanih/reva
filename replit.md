@@ -6,9 +6,12 @@ Reva is a web-based performance marketing platform that connects marketers with 
 
 **Current Status**: Completed MVP with full functionality for demo and testing. Has documented security limitation (client-side IP capture) that requires Edge Function implementation before production deployment with real money.
 
+**Latest Update (October 6, 2025)**: Implemented dynamic customer messaging on hero landing page with auto-rotating headlines and manual toggle controls to address both marketers and promoters. User confirmed this is the preferred version.
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Dynamic hero section with dual customer messaging is the preferred approach.
 
 ## System Architecture
 
