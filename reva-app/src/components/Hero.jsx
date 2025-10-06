@@ -345,54 +345,257 @@ const Hero = () => {
                             </blockquote>
                         </div>
                         
-                        {/* Dashboard Mockup - Simplified */}
-                        <div className="mt-20">
+                        {/* Dashboard Mockup - Full Design */}
+                        <div className="mt-20 pb-12">
                             <div className="relative">
-                                <div className="relative mx-auto max-w-5xl">
-                                    {/* Subtle shadow instead of gradient glow */}
-                                    <div className="absolute inset-0 bg-gray-200/20 blur-2xl"></div>
-                                    <div className="relative bg-white rounded-3xl shadow-xl border border-gray-200 p-2">
-                                        <div className="bg-gray-900 rounded-2xl overflow-hidden">
-                                            {/* Mock browser bar */}
-                                            <div className="bg-gray-800 px-4 py-3 flex items-center gap-2">
-                                                <div className="flex gap-1.5">
-                                                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                                </div>
-                                                <div className="flex-1 flex justify-center">
-                                                    <div className="bg-gray-700 rounded px-4 py-1 text-xs text-gray-400">
-                                                        reva.app/dashboard
+                                <div className="absolute inset-0 h-2/3 bg-gray-50"></div>
+                                <div className="relative mx-auto">
+                                    <div className="lg:max-w-6xl lg:mx-auto">
+                                        <div className="transform scale-110">
+                                            <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-200 p-2">
+                                                <div className="bg-white rounded-2xl overflow-hidden">
+                                                    {/* Mock browser bar */}
+                                                    <div className="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
+                                                        <div className="flex gap-1.5">
+                                                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                                        </div>
+                                                        <div className="flex-1 flex justify-center">
+                                                            <div className="bg-white border border-gray-300 rounded-md px-4 py-1 text-xs text-gray-600">
+                                                                reva.app/dashboard
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            
-                                            {/* Dashboard content - simplified */}
-                                            <div className="p-8 bg-gray-900">
-                                                <div className="grid grid-cols-3 gap-4 mb-8">
-                                                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                                                        <div className="text-3xl font-bold text-white mb-2">$24,850</div>
-                                                        <div className="text-sm text-gray-400">Total Revenue</div>
-                                                    </div>
-                                                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                                                        <div className="text-3xl font-bold text-white mb-2">89.2%</div>
-                                                        <div className="text-sm text-gray-400">Conversion Rate</div>
-                                                    </div>
-                                                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                                                        <div className="text-3xl font-bold text-white mb-2">12,450</div>
-                                                        <div className="text-sm text-gray-400">Total Clicks</div>
-                                                    </div>
-                                                </div>
-                                                
-                                                {/* Mock chart - simplified */}
-                                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                                                    <div className="h-48 flex items-end justify-between gap-2">
-                                                        <div className="w-full bg-cyan-500 rounded-t" style={{height: '60%'}}></div>
-                                                        <div className="w-full bg-cyan-500 rounded-t" style={{height: '80%'}}></div>
-                                                        <div className="w-full bg-purple-500 rounded-t" style={{height: '45%'}}></div>
-                                                        <div className="w-full bg-cyan-500 rounded-t" style={{height: '90%'}}></div>
-                                                        <div className="w-full bg-purple-500 rounded-t" style={{height: '75%'}}></div>
-                                                        <div className="w-full bg-cyan-500 rounded-t" style={{height: '95%'}}></div>
+                                                    
+                                                    {/* Dashboard content */}
+                                                    <div className="flex bg-gray-50">
+                                                        {/* Sidebar */}
+                                                        <div className="w-48 bg-white border-r border-gray-200 p-4">
+                                                            <div className="space-y-1">
+                                                                <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 text-blue-600 rounded-lg text-xs font-medium">
+                                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                                                    </svg>
+                                                                    Dashboard
+                                                                </div>
+                                                                <div className="text-xs font-medium text-gray-600 uppercase tracking-wider px-3 py-2 mt-3">Actions</div>
+                                                                <div className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg text-xs">
+                                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                    </svg>
+                                                                    User Flow
+                                                                </div>
+                                                                <div className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg text-xs">
+                                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                                    </svg>
+                                                                    Content Calendar
+                                                                </div>
+                                                                <div className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg text-xs">
+                                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                                                    </svg>
+                                                                    Quick Actions
+                                                                </div>
+                                                                <div className="text-xs font-medium text-gray-600 uppercase tracking-wider px-3 py-2 mt-3">Profiles</div>
+                                                                <div className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg text-xs">
+                                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                                    </svg>
+                                                                    All Profiles
+                                                                </div>
+                                                                <div className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg text-xs">
+                                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                                                    </svg>
+                                                                    Segments
+                                                                </div>
+                                                                <div className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg text-xs">
+                                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                                    </svg>
+                                                                    Import/Exports
+                                                                </div>
+                                                                <div className="text-xs font-medium text-gray-600 uppercase tracking-wider px-3 py-2 mt-3">Dynamics</div>
+                                                                <div className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg text-xs">
+                                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                                                    </svg>
+                                                                    Landing Pages
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        {/* Main content */}
+                                                        <div className="flex-1 p-6">
+                                                            {/* Header */}
+                                                            <div className="mb-6">
+                                                                <h2 className="text-xl font-bold text-gray-900 mb-1">Today's Report</h2>
+                                                                <p className="text-xs text-gray-500 flex items-center gap-2">
+                                                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                    </svg>
+                                                                    Date range
+                                                                </p>
+                                                            </div>
+                                                            
+                                                            {/* Metrics cards */}
+                                                            <div className="grid grid-cols-4 gap-3 mb-6">
+                                                                <div className="bg-white rounded-lg p-3 border border-gray-200">
+                                                                    <div className="flex items-center justify-between mb-1">
+                                                                        <span className="text-xs text-gray-500">Conversions</span>
+                                                                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                                                            <span className="text-green-600 text-xs">↗</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="text-xl font-bold text-gray-900">3,536</div>
+                                                                    <div className="text-xs text-green-600">+18.4%</div>
+                                                                </div>
+                                                                <div className="bg-white rounded-lg p-3 border border-gray-200">
+                                                                    <div className="flex items-center justify-between mb-1">
+                                                                        <span className="text-xs text-gray-500">Clicked Links</span>
+                                                                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                                                            <span className="text-blue-600 text-xs">↗</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="text-xl font-bold text-gray-900">1,424</div>
+                                                                    <div className="text-xs text-blue-600">+10.0%</div>
+                                                                </div>
+                                                                <div className="bg-white rounded-lg p-3 border border-gray-200">
+                                                                    <div className="flex items-center justify-between mb-1">
+                                                                        <span className="text-xs text-gray-500">Undetermined</span>
+                                                                        <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                                                            <span className="text-yellow-600 text-xs">→</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="text-xl font-bold text-gray-900">153</div>
+                                                                    <div className="text-xs text-yellow-600">+1.5%</div>
+                                                                </div>
+                                                                <div className="bg-white rounded-lg p-3 border border-gray-200">
+                                                                    <div className="flex items-center justify-between mb-1">
+                                                                        <span className="text-xs text-gray-500">Bounced</span>
+                                                                        <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                                                            <span className="text-red-600 text-xs">↓</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="text-xl font-bold text-gray-900">32</div>
+                                                                    <div className="text-xs text-red-600">-0.09%</div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div className="grid grid-cols-2 gap-4">
+                                                                {/* Campaign Reports */}
+                                                                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                                                                    <div className="flex items-center justify-between mb-3">
+                                                                        <h3 className="text-sm font-semibold text-gray-900">Campaign Reports</h3>
+                                                                        <button className="text-xs text-gray-500 flex items-center gap-1">
+                                                                            View All Campaigns
+                                                                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                                                            </svg>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div className="space-y-2">
+                                                                        <div className="flex items-center justify-between py-2 border-b border-gray-100">
+                                                                            <div>
+                                                                                <p className="text-xs font-medium text-gray-900">Unique Subscribers</p>
+                                                                                <p className="text-[10px] text-gray-500">14,857</p>
+                                                                            </div>
+                                                                            <div className="text-right">
+                                                                                <span className="text-xs text-gray-600">Now</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="flex items-center justify-between py-2 border-b border-gray-100">
+                                                                            <div>
+                                                                                <p className="text-xs font-medium text-gray-900">New Email Visitors</p>
+                                                                                <p className="text-[10px] text-gray-500">First-time Recipients</p>
+                                                                            </div>
+                                                                            <div className="text-right">
+                                                                                <span className="text-xs text-gray-900 font-semibold">2,548</span>
+                                                                                <span className="text-[10px] text-gray-500 ml-2">2,445</span>
+                                                                                <span className="text-[10px] text-green-600 ml-1">$61,325</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="flex items-center justify-between py-2 border-b border-gray-100">
+                                                                            <div>
+                                                                                <p className="text-xs font-medium text-gray-900">Email Sent to Health Profiles</p>
+                                                                                <p className="text-[10px] text-gray-500">Targeted Segment</p>
+                                                                            </div>
+                                                                            <div className="text-right">
+                                                                                <span className="text-xs text-gray-900 font-semibold">2,657</span>
+                                                                                <span className="text-[10px] text-gray-500 ml-2">4,556</span>
+                                                                                <span className="text-[10px] text-green-600 ml-1">$54,459</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="flex items-center justify-between py-2">
+                                                                            <div>
+                                                                                <p className="text-xs font-medium text-gray-900">Product Focused Email</p>
+                                                                                <p className="text-[10px] text-gray-500">#G34 Package - May</p>
+                                                                            </div>
+                                                                            <div className="text-right">
+                                                                                <span className="text-xs text-gray-900 font-semibold">8,491</span>
+                                                                                <span className="text-[10px] text-gray-500 ml-2">6,654</span>
+                                                                                <span className="text-[10px] text-green-600 ml-1">$5,205</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                {/* Sales Report */}
+                                                                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                                                                    <div className="flex items-center justify-between mb-3">
+                                                                        <h3 className="text-sm font-semibold text-gray-900">Sales Report</h3>
+                                                                        <select className="text-xs text-gray-500 border-0 focus:ring-0">
+                                                                            <option>May 10 - May 29</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div className="flex items-center justify-between text-xs mb-1">
+                                                                            <span className="text-gray-500">Total Revenue</span>
+                                                                            <span className="text-gray-500">Total Orders</span>
+                                                                        </div>
+                                                                        <div className="flex items-center justify-between mb-3">
+                                                                            <span className="text-xl font-bold text-gray-900">$131,948</span>
+                                                                            <span className="text-lg font-semibold text-gray-700">3,814</span>
+                                                                        </div>
+                                                                        <div className="flex items-center justify-between text-xs mb-3">
+                                                                            <div>
+                                                                                <span className="text-gray-500">From Campaigns</span>
+                                                                                <span className="text-blue-600 font-semibold ml-2">$123,386</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span className="text-gray-500">Orders</span>
+                                                                                <span className="text-gray-700 font-semibold ml-2">3,511</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="flex items-center justify-between text-xs mb-3">
+                                                                            <div>
+                                                                                <span className="text-gray-500">From Direct</span>
+                                                                                <span className="text-gray-700 font-semibold ml-2">$9,157</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span className="text-gray-500">Orders</span>
+                                                                                <span className="text-gray-700 font-semibold ml-2">403</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="h-32 flex items-end justify-between gap-1 mt-3">
+                                                                            <div className="w-full bg-blue-400 rounded-t" style={{height: '55%'}}></div>
+                                                                            <div className="w-full bg-blue-500 rounded-t" style={{height: '75%'}}></div>
+                                                                            <div className="w-full bg-blue-400 rounded-t" style={{height: '65%'}}></div>
+                                                                            <div className="w-full bg-blue-500 rounded-t" style={{height: '85%'}}></div>
+                                                                            <div className="w-full bg-blue-400 rounded-t" style={{height: '70%'}}></div>
+                                                                            <div className="w-full bg-blue-500 rounded-t" style={{height: '90%'}}></div>
+                                                                            <div className="w-full bg-blue-400 rounded-t" style={{height: '80%'}}></div>
+                                                                        </div>
+                                                                        <div className="flex justify-between mt-1">
+                                                                            <span className="text-[8px] text-gray-400">Monday</span>
+                                                                            <span className="text-[8px] text-gray-400">Sunday</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
