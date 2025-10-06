@@ -148,7 +148,9 @@ const Hero = () => {
 
             <section className="relative">
                 {/* Radial gradient for premium depth */}
-                <div className="absolute inset-0 bg-gradient-radial from-cyan-500/5 via-transparent to-transparent pointer-events-none z-10"></div>
+                <div className="absolute inset-0 pointer-events-none z-10" style={{
+                    background: 'radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.05) 0%, transparent 50%)'
+                }}></div>
                 
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-20">
                     <div className="max-w-3xl mx-auto text-center">
@@ -187,9 +189,7 @@ const Hero = () => {
 
                         {/* Hero Content with Animations */}
                         <div className="transition-all duration-500 ease-out">
-                            <h1 className={`text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-gray-900 tracking-tight ${
-                                customerType === 'marketer' ? 'animate-fade-in-up' : 'animate-fade-in-up'
-                            }`}>
+                            <h1 className="text-fluid-xl font-bold leading-tight text-gray-900 tracking-tight animate-fade-in-up">
                                 {currentContent.main}
                                 <span className="relative inline-block ml-2">
                                     {/* Neon glow effect */}
