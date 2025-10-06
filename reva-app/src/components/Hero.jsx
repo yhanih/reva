@@ -344,6 +344,63 @@ const Hero = () => {
                                 </div>
                             </blockquote>
                         </div>
+                        
+                        {/* Dashboard Mockup - Simplified */}
+                        <div className="mt-20">
+                            <div className="relative">
+                                <div className="relative mx-auto max-w-5xl">
+                                    {/* Subtle shadow instead of gradient glow */}
+                                    <div className="absolute inset-0 bg-gray-200/20 blur-2xl"></div>
+                                    <div className="relative bg-white rounded-3xl shadow-xl border border-gray-200 p-2">
+                                        <div className="bg-gray-900 rounded-2xl overflow-hidden">
+                                            {/* Mock browser bar */}
+                                            <div className="bg-gray-800 px-4 py-3 flex items-center gap-2">
+                                                <div className="flex gap-1.5">
+                                                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                                </div>
+                                                <div className="flex-1 flex justify-center">
+                                                    <div className="bg-gray-700 rounded px-4 py-1 text-xs text-gray-400">
+                                                        reva.app/dashboard
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            {/* Dashboard content - simplified */}
+                                            <div className="p-8 bg-gray-900">
+                                                <div className="grid grid-cols-3 gap-4 mb-8">
+                                                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                                                        <div className="text-3xl font-bold text-white mb-2">$24,850</div>
+                                                        <div className="text-sm text-gray-400">Total Revenue</div>
+                                                    </div>
+                                                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                                                        <div className="text-3xl font-bold text-white mb-2">89.2%</div>
+                                                        <div className="text-sm text-gray-400">Conversion Rate</div>
+                                                    </div>
+                                                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                                                        <div className="text-3xl font-bold text-white mb-2">12,450</div>
+                                                        <div className="text-sm text-gray-400">Total Clicks</div>
+                                                    </div>
+                                                </div>
+                                                
+                                                {/* Mock chart - simplified */}
+                                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                                                    <div className="h-48 flex items-end justify-between gap-2">
+                                                        <div className="w-full bg-cyan-500 rounded-t" style={{height: '60%'}}></div>
+                                                        <div className="w-full bg-cyan-500 rounded-t" style={{height: '80%'}}></div>
+                                                        <div className="w-full bg-purple-500 rounded-t" style={{height: '45%'}}></div>
+                                                        <div className="w-full bg-cyan-500 rounded-t" style={{height: '90%'}}></div>
+                                                        <div className="w-full bg-purple-500 rounded-t" style={{height: '75%'}}></div>
+                                                        <div className="w-full bg-cyan-500 rounded-t" style={{height: '95%'}}></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -550,65 +607,6 @@ const Hero = () => {
                                 <button className="w-full py-3 px-6 text-gray-900 bg-gray-200 rounded-lg font-semibold hover:bg-gray-300 transition">
                                     Contact Sales
                                 </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                {/* Dashboard Mockup - Simplified */}
-                <div className="pb-20 mt-20">
-                    <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                        <div className="relative">
-                            <div className="relative mx-auto max-w-5xl">
-                                {/* Subtle shadow instead of gradient glow */}
-                                <div className="absolute inset-0 bg-gray-200/20 blur-2xl"></div>
-                                <div className="relative bg-white rounded-3xl shadow-xl border border-gray-200 p-2">
-                                    <div className="bg-gray-900 rounded-2xl overflow-hidden">
-                                        {/* Mock browser bar */}
-                                        <div className="bg-gray-800 px-4 py-3 flex items-center gap-2">
-                                            <div className="flex gap-1.5">
-                                                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                            </div>
-                                            <div className="flex-1 flex justify-center">
-                                                <div className="bg-gray-700 rounded px-4 py-1 text-xs text-gray-400">
-                                                    reva.app/dashboard
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        {/* Dashboard content - simplified */}
-                                        <div className="p-8 bg-gray-900">
-                                            <div className="grid grid-cols-3 gap-4 mb-8">
-                                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                                                    <div className="text-3xl font-bold text-white mb-2">$24,850</div>
-                                                    <div className="text-sm text-gray-400">Total Revenue</div>
-                                                </div>
-                                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                                                    <div className="text-3xl font-bold text-white mb-2">89.2%</div>
-                                                    <div className="text-sm text-gray-400">Conversion Rate</div>
-                                                </div>
-                                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                                                    <div className="text-3xl font-bold text-white mb-2">12,450</div>
-                                                    <div className="text-sm text-gray-400">Total Clicks</div>
-                                                </div>
-                                            </div>
-                                            
-                                            {/* Mock chart - simplified */}
-                                            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                                                <div className="h-48 flex items-end justify-between gap-2">
-                                                    <div className="w-full bg-cyan-500 rounded-t" style={{height: '60%'}}></div>
-                                                    <div className="w-full bg-cyan-500 rounded-t" style={{height: '80%'}}></div>
-                                                    <div className="w-full bg-purple-500 rounded-t" style={{height: '45%'}}></div>
-                                                    <div className="w-full bg-cyan-500 rounded-t" style={{height: '90%'}}></div>
-                                                    <div className="w-full bg-purple-500 rounded-t" style={{height: '75%'}}></div>
-                                                    <div className="w-full bg-cyan-500 rounded-t" style={{height: '95%'}}></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
