@@ -95,10 +95,7 @@ const Hero = () => {
                         <h1 className="px-6 text-lg font-medium text-gray-600 tracking-wide">Performance marketing platform connecting marketers and promoters</h1>
                         <p className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight tracking-tight">
                             Turn your
-                            <AnimatedText 
-                              words={['visitors', 'content', 'audience']} 
-                              hasGradient={true}
-                            />
+                            <AnimatedText words={['visitors', 'content', 'audience']} />
                             into
                             <AnimatedText words={['profitable business', 'passive income', 'real revenue']} />
                         </p>

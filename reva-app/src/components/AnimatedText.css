@@ -1,7 +1,7 @@
 .animated-text-wrapper {
-  display: inline;
+  display: inline-block;
   position: relative;
-  white-space: nowrap;
+  margin: 0 0.4em;
 }
 
 .animated-words {
