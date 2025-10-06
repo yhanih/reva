@@ -104,9 +104,7 @@ const Hero = () => {
             </div>
             
             {/* Sticky Navbar */}
-            <header className={`${isNavbarSticky ? 'fixed top-0' : 'absolute'} left-0 right-0 py-4 md:py-6 z-50 transition-all duration-300 ${
-                isNavbarSticky ? 'bg-white/95 backdrop-blur-md shadow-lg' : ''
-            }`}>
+            <header className={`${isNavbarSticky ? 'fixed top-0' : 'absolute'} left-0 right-0 py-4 md:py-6 z-50 transition-all duration-300`}>
                 <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between">
                         <div className="flex-shrink-0">
