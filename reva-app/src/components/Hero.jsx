@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Pattern from './Pattern';
 
@@ -6,6 +6,12 @@ const Hero = () => {
     const [expanded, setExpanded] = useState(false);
     const [customerType, setCustomerType] = useState('marketer');
     const [isAutoRotating, setIsAutoRotating] = useState(true);
+    
+    // Scroll tracking state
+    const [scrollProgress, setScrollProgress] = useState(0);
+    const [isNavbarSticky, setIsNavbarSticky] = useState(false);
+    const heroRef = useRef(null);
+    const heroContentRef = useRef(null);
 
     // Auto-rotate between customer types
     useEffect(() => {
@@ -25,6 +31,27 @@ const Hero = () => {
             setCustomerType(savedType);
             setIsAutoRotating(false);
         }
+    }, []);
+    
+    // Scroll tracking for cinematic effects
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const heroHeight = heroRef.current?.offsetHeight || windowHeight;
+            
+            // Calculate scroll progress (0 to 1)
+            const progress = Math.min(scrollY / (heroHeight * 0.8), 1);
+            setScrollProgress(progress);
+            
+            // Make navbar sticky after scrolling past 50px
+            setIsNavbarSticky(scrollY > 50);
+        };
+        
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Call once to set initial state
+        
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     // Dynamic content based on customer type
@@ -62,13 +89,24 @@ const Hero = () => {
         setIsAutoRotating(false);
         localStorage.setItem('customerType', type);
     };
+    
+    // Calculate dynamic values for animations
+    const heroScale = 1 - scrollProgress * 0.1; // Scale down to 0.9
+    const heroOpacity = 1 - scrollProgress * 0.8; // Fade to 0.2
+    const heroTranslateY = scrollProgress * -100; // Move up 100px
+    const contentParallax = scrollProgress * 50; // Slower parallax for content
 
     return (
         <div className="overflow-x-hidden relative">
-            <div className="absolute inset-0 overflow-hidden z-0">
+            {/* Pattern background stays fixed */}
+            <div className="fixed inset-0 overflow-hidden z-0">
                 <Pattern />
             </div>
-            <header className="py-4 md:py-6 relative z-20">
+            
+            {/* Sticky Navbar */}
+            <header className={`${isNavbarSticky ? 'fixed top-0' : 'absolute'} left-0 right-0 py-4 md:py-6 z-50 transition-all duration-300 ${
+                isNavbarSticky ? 'bg-white/95 backdrop-blur-md shadow-lg' : ''
+            }`}>
                 <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between">
                         <div className="flex-shrink-0">
