@@ -68,7 +68,7 @@ const Hero = () => {
             <div className="absolute inset-0 overflow-hidden z-0">
                 <Pattern />
             </div>
-            <header className="py-4 md:py-6 relative z-20">
+            <header className="sticky top-0 bg-white/95 backdrop-blur-md py-4 md:py-6 z-50 border-b border-gray-100">
                 <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between">
                         <div className="flex-shrink-0">
