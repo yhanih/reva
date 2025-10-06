@@ -184,14 +184,34 @@ const Hero = () => {
                 </div>
             </header>
 
-            <section className="relative">
-                {/* Subtle radial gradient for depth */}
-                <div className="absolute inset-0 pointer-events-none z-10" style={{
-                    background: 'radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.02) 0%, transparent 50%)'
-                }}></div>
-                
-                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-20">
-                    <div className="max-w-3xl mx-auto text-center">
+            {/* Hero Section with Cinematic Effects */}
+            <section 
+                ref={heroRef}
+                className="relative min-h-screen"
+                style={{
+                    position: scrollProgress > 0.95 ? 'relative' : 'sticky',
+                    top: 0,
+                    transform: `scale(${heroScale}) translateY(${heroTranslateY}px)`,
+                    opacity: heroOpacity,
+                    transition: 'none', // Use CSS transform for smooth 60fps animation
+                }}
+            >
+                {/* Add padding for sticky navbar when it appears */}
+                <div className={`${isNavbarSticky ? 'pt-20' : ''} transition-all duration-300`}>
+                    {/* Subtle radial gradient for depth */}
+                    <div className="absolute inset-0 pointer-events-none z-10" style={{
+                        background: 'radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.02) 0%, transparent 50%)'
+                    }}></div>
+                    
+                    <div 
+                        ref={heroContentRef}
+                        className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-20"
+                        style={{
+                            transform: `translateY(${contentParallax}px)`,
+                            transition: 'none',
+                        }}
+                    >
+                        <div className="max-w-3xl mx-auto text-center pt-20">
                         {/* Premium Segmented Control */}
                         <div className="flex justify-center mb-10">
                             <div className="relative inline-flex bg-gray-100/80 backdrop-blur-sm rounded-full p-1 shadow-xl shadow-gray-900/5">
@@ -290,9 +310,13 @@ const Hero = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            </section>
 
+            {/* Content Sections with Reveal Effect */}
+            <div className="relative bg-white z-30" style={{ minHeight: '100vh' }}>
                 {/* Trust Section */}
-                <div className="mt-20 py-12 border-t border-gray-200">
+                <div className="pt-20 pb-12 border-t border-gray-200">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="text-center mb-8">
                             <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Trusted by leading companies</p>
@@ -383,7 +407,7 @@ const Hero = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     );
 };
