@@ -147,9 +147,9 @@ const Hero = () => {
             </header>
 
             <section className="relative">
-                {/* Radial gradient for premium depth */}
+                {/* Subtle radial gradient for depth */}
                 <div className="absolute inset-0 pointer-events-none z-10" style={{
-                    background: 'radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.05) 0%, transparent 50%)'
+                    background: 'radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.02) 0%, transparent 50%)'
                 }}></div>
                 
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-20">
@@ -192,17 +192,17 @@ const Hero = () => {
                             <h1 className="text-fluid-xl font-bold leading-tight text-gray-900 tracking-tight animate-fade-in-up">
                                 {currentContent.main}
                                 <span className="relative inline-block ml-2">
-                                    {/* Neon glow effect */}
+                                    {/* Subtle glow effect */}
                                     <span className={`absolute inset-0 ${
                                         customerType === 'marketer' 
-                                            ? 'bg-gradient-to-r from-cyan-400 to-blue-500' 
-                                            : 'bg-gradient-to-r from-purple-400 to-pink-500'
-                                    } blur-2xl opacity-60 scale-150`}></span>
-                                    <span className={`relative bg-gradient-to-r ${
+                                            ? 'bg-cyan-500' 
+                                            : 'bg-purple-500'
+                                    } blur-xl opacity-20 scale-110`}></span>
+                                    <span className={`relative ${
                                         customerType === 'marketer' 
-                                            ? 'from-cyan-500 to-blue-600' 
-                                            : 'from-purple-500 to-pink-600'
-                                    } bg-clip-text text-transparent`}> {currentContent.highlight}</span>
+                                            ? 'text-cyan-600' 
+                                            : 'text-purple-600'
+                                    } font-bold`}> {currentContent.highlight}</span>
                                 </span>
                             </h1>
                             
@@ -211,23 +211,22 @@ const Hero = () => {
                             </p>
                         </div>
 
-                        {/* Premium CTA Buttons */}
+                        {/* Simplified CTA Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
                             <Link
                                 to="/signup"
                                 className={`group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-300 rounded-2xl ${
                                     customerType === 'marketer' 
-                                        ? 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700' 
-                                        : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700'
-                                } transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/20`}
+                                        ? 'bg-cyan-600 hover:bg-cyan-700' 
+                                        : 'bg-purple-600 hover:bg-purple-700'
+                                } transform hover:scale-[1.02] hover:shadow-lg`}
                             >
                                 <span className="relative z-10">{currentContent.cta}</span>
-                                <div className="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                             </Link>
                             
                             <Link
                                 to="/login"
-                                className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-gray-900 bg-white border-2 border-gray-200 rounded-2xl transition-all duration-300 hover:border-gray-400 hover:shadow-xl hover:shadow-black/10 transform hover:scale-[1.02]"
+                                className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-2xl transition-all duration-300 hover:border-gray-300 hover:shadow-md transform hover:scale-[1.02]"
                             >
                                 <span className="relative z-10">Sign In</span>
                             </Link>
@@ -288,14 +287,14 @@ const Hero = () => {
                     </div>
                 </div>
 
-                {/* Dashboard Mockup with Glassmorphism */}
+                {/* Dashboard Mockup - Simplified */}
                 <div className="pb-20 mt-20">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="relative">
-                            {/* Glassmorphism container */}
                             <div className="relative mx-auto max-w-5xl">
-                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-purple-400/20 blur-3xl"></div>
-                                <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-2">
+                                {/* Subtle shadow instead of gradient glow */}
+                                <div className="absolute inset-0 bg-gray-200/20 blur-2xl"></div>
+                                <div className="relative bg-white rounded-3xl shadow-xl border border-gray-200 p-2">
                                     <div className="bg-gray-900 rounded-2xl overflow-hidden">
                                         {/* Mock browser bar */}
                                         <div className="bg-gray-800 px-4 py-3 flex items-center gap-2">
@@ -311,32 +310,32 @@ const Hero = () => {
                                             </div>
                                         </div>
                                         
-                                        {/* Dashboard content */}
-                                        <div className="p-8 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800">
+                                        {/* Dashboard content - simplified */}
+                                        <div className="p-8 bg-gray-900">
                                             <div className="grid grid-cols-3 gap-4 mb-8">
-                                                <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl p-6 border border-cyan-500/20">
+                                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                                                     <div className="text-3xl font-bold text-white mb-2">$24,850</div>
                                                     <div className="text-sm text-gray-400">Total Revenue</div>
                                                 </div>
-                                                <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-purple-500/20">
+                                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                                                     <div className="text-3xl font-bold text-white mb-2">89.2%</div>
                                                     <div className="text-sm text-gray-400">Conversion Rate</div>
                                                 </div>
-                                                <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl p-6 border border-green-500/20">
+                                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                                                     <div className="text-3xl font-bold text-white mb-2">12,450</div>
                                                     <div className="text-sm text-gray-400">Total Clicks</div>
                                                 </div>
                                             </div>
                                             
-                                            {/* Mock chart */}
-                                            <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/50">
+                                            {/* Mock chart - simplified */}
+                                            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                                                 <div className="h-48 flex items-end justify-between gap-2">
-                                                    <div className="w-full bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t" style={{height: '60%'}}></div>
-                                                    <div className="w-full bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t" style={{height: '80%'}}></div>
-                                                    <div className="w-full bg-gradient-to-t from-purple-500 to-purple-400 rounded-t" style={{height: '45%'}}></div>
-                                                    <div className="w-full bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t" style={{height: '90%'}}></div>
-                                                    <div className="w-full bg-gradient-to-t from-purple-500 to-purple-400 rounded-t" style={{height: '75%'}}></div>
-                                                    <div className="w-full bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t" style={{height: '95%'}}></div>
+                                                    <div className="w-full bg-cyan-500 rounded-t" style={{height: '60%'}}></div>
+                                                    <div className="w-full bg-cyan-500 rounded-t" style={{height: '80%'}}></div>
+                                                    <div className="w-full bg-purple-500 rounded-t" style={{height: '45%'}}></div>
+                                                    <div className="w-full bg-cyan-500 rounded-t" style={{height: '90%'}}></div>
+                                                    <div className="w-full bg-purple-500 rounded-t" style={{height: '75%'}}></div>
+                                                    <div className="w-full bg-cyan-500 rounded-t" style={{height: '95%'}}></div>
                                                 </div>
                                             </div>
                                         </div>
