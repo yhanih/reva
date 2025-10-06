@@ -242,10 +242,8 @@ const Hero = () => {
             >
                 {/* Add padding for sticky navbar when it appears */}
                 <div className={`${isNavbarSticky ? 'pt-20' : ''} transition-all duration-300`}>
-                    {/* Subtle radial gradient for depth */}
-                    <div className="absolute inset-0 pointer-events-none z-10" style={{
-                        background: 'radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.02) 0%, transparent 50%)'
-                    }}></div>
+                    {/* Clean overlay for consistency */}
+                    <div className="absolute inset-0 pointer-events-none z-10"></div>
                     
                     <div 
                         ref={heroContentRef}
@@ -942,8 +940,8 @@ const Hero = () => {
                                                 </svg>
                                             </a>
                                         </td>
-                                        <td className="px-4 py-6 text-center text-white bg-yellow-500 rounded-b-xl">
-                                            <a href="#" title="" className="inline-flex items-center font-semibold text-white">
+                                        <td className="px-4 py-6 text-center text-white bg-cyan-600 rounded-b-xl">
+                                            <a href="#" title="" className="inline-flex items-center font-semibold text-white hover:underline">
                                                 Get Started
                                                 <svg className="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
