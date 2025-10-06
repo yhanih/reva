@@ -166,23 +166,41 @@ const Hero = () => {
                         </p>
 
                         <div className="px-8 sm:items-center sm:justify-center sm:px-0 sm:space-x-5 sm:flex mt-10">
-                            <a
-                                href="#"
-                                title=""
-                                className="inline-flex items-center justify-center w-full px-8 py-3.5 text-lg font-semibold text-white transition-all duration-200 bg-gray-900 border-2 border-transparent sm:w-auto rounded-xl hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-900/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-                                role="button"
-                            >
-                                Join as Marketer
-                            </a>
-
-                            <a
-                                href="#"
-                                title=""
-                                className="inline-flex items-center justify-center w-full px-8 py-3.5 mt-4 text-lg font-semibold text-gray-900 transition-all duration-200 bg-white border-2 border-gray-300 sm:w-auto sm:mt-0 rounded-xl hover:border-gray-900 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-                                role="button"
-                            >
-                                Join as Promoter
-                            </a>
+                            {customerType === 'marketer' ? (
+                                <>
+                                    <Link
+                                        to="/signup"
+                                        className="inline-flex items-center justify-center w-full px-8 py-3.5 text-lg font-semibold text-white transition-all duration-200 bg-gradient-to-r from-cyan-600 to-cyan-700 border-2 border-transparent sm:w-auto rounded-xl hover:from-cyan-700 hover:to-cyan-800 hover:shadow-lg hover:shadow-cyan-900/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-600"
+                                        role="button"
+                                    >
+                                        Create Campaign
+                                    </Link>
+                                    <Link
+                                        to="/login"
+                                        className="inline-flex items-center justify-center w-full px-8 py-3.5 mt-4 text-lg font-semibold text-gray-900 transition-all duration-200 bg-white border-2 border-gray-300 sm:w-auto sm:mt-0 rounded-xl hover:border-gray-900 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                                        role="button"
+                                    >
+                                        Sign In
+                                    </Link>
+                                </>
+                            ) : (
+                                <>
+                                    <Link
+                                        to="/signup"
+                                        className="inline-flex items-center justify-center w-full px-8 py-3.5 text-lg font-semibold text-white transition-all duration-200 bg-gradient-to-r from-purple-600 to-purple-700 border-2 border-transparent sm:w-auto rounded-xl hover:from-purple-700 hover:to-purple-800 hover:shadow-lg hover:shadow-purple-900/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600"
+                                        role="button"
+                                    >
+                                        Start Earning
+                                    </Link>
+                                    <Link
+                                        to="/login"
+                                        className="inline-flex items-center justify-center w-full px-8 py-3.5 mt-4 text-lg font-semibold text-gray-900 transition-all duration-200 bg-white border-2 border-gray-300 sm:w-auto sm:mt-0 rounded-xl hover:border-gray-900 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                                        role="button"
+                                    >
+                                        Sign In
+                                    </Link>
+                                </>
+                            )}
                         </div>
 
                         <p className="mt-9 text-base text-gray-500 font-medium">Track authentic engagement · Reward real results</p>
