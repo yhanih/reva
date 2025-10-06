@@ -1,9 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Pattern from './Pattern';
 
 const Hero = () => {
     const [expanded, setExpanded] = useState(false);
+    const [customerType, setCustomerType] = useState('marketer');
+    const [isAutoRotating, setIsAutoRotating] = useState(true);
+
+    // Auto-rotate between customer types
+    useEffect(() => {
+        if (!isAutoRotating) return;
+        
+        const interval = setInterval(() => {
+            setCustomerType(prev => prev === 'marketer' ? 'promoter' : 'marketer');
+        }, 4000); // Rotate every 4 seconds
+
+        return () => clearInterval(interval);
+    }, [isAutoRotating]);
+
+    // Dynamic content based on customer type
+    const headlines = {
+        marketer: {
+            main: "Turn your campaigns into measurable",
+            highlight: "results",
+            subtitle: "Create performance-based campaigns and pay only for real engagement"
+        },
+        promoter: {
+            main: "Turn your audience into real",
+            highlight: "earnings",
+            subtitle: "Share links, drive clicks, and earn from your influence"
+        }
+    };
+
+    const currentContent = headlines[customerType];
 
     return (
         <div className="overflow-x-hidden relative">
@@ -91,12 +120,48 @@ const Hero = () => {
             <section className="relative">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-20">
                     <div className="max-w-2xl mx-auto text-center">
-                        <h1 className="px-6 text-lg font-medium text-gray-600 tracking-wide">Performance marketing platform connecting marketers and promoters</h1>
-                        <p className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight tracking-tight">
-                            Turn your visitors into profitable
+                        {/* Customer Type Toggle */}
+                        <div className="flex justify-center mb-8">
+                            <div className="inline-flex bg-gray-100 rounded-lg p-1">
+                                <button
+                                    onClick={() => {
+                                        setCustomerType('marketer');
+                                        setIsAutoRotating(false);
+                                    }}
+                                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                                        customerType === 'marketer'
+                                            ? 'bg-white text-gray-900 shadow-sm'
+                                            : 'text-gray-600 hover:text-gray-900'
+                                    }`}
+                                >
+                                    I'm a Marketer
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setCustomerType('promoter');
+                                        setIsAutoRotating(false);
+                                    }}
+                                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                                        customerType === 'promoter'
+                                            ? 'bg-white text-gray-900 shadow-sm'
+                                            : 'text-gray-600 hover:text-gray-900'
+                                    }`}
+                                >
+                                    I'm a Promoter
+                                </button>
+                            </div>
+                        </div>
+
+                        <h1 className="px-6 text-lg font-medium text-gray-600 tracking-wide">{currentContent.subtitle}</h1>
+                        <p className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight tracking-tight transition-all duration-500">
+                            {currentContent.main}
                             <span className="relative inline-flex sm:inline">
-                                <span className="bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-lg filter opacity-30 w-full h-full absolute inset-0"></span>
-                                <span className="relative"> business </span>
+                                <span className={`${
+                                    customerType === 'marketer' 
+                                        ? 'bg-gradient-to-r from-[#44BCFF] via-[#00D4FF] to-[#44BCFF]' 
+                                        : 'bg-gradient-to-r from-[#FF44EC] via-[#FF675E] to-[#FF44EC]'
+                                } blur-lg filter opacity-30 w-full h-full absolute inset-0`}></span>
+                                <span className="relative"> {currentContent.highlight} </span>
                             </span>
                         </p>
 
