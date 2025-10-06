@@ -134,11 +134,11 @@ const Hero = () => {
                         </div>
 
                         <div className="hidden lg:flex lg:ml-16 lg:items-center lg:justify-center lg:space-x-10 xl:space-x-16">
-                            <a href="#" title="" className="text-base font-medium text-gray-700 transition-all duration-200 rounded focus:outline-none hover:text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Features</a>
+                            <a href="#features" title="" className="text-base font-medium text-gray-700 transition-all duration-200 rounded focus:outline-none hover:text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Features</a>
 
-                            <a href="#" title="" className="text-base font-medium text-gray-700 transition-all duration-200 rounded focus:outline-none hover:text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">How It Works</a>
+                            <a href="#how-it-works" title="" className="text-base font-medium text-gray-700 transition-all duration-200 rounded focus:outline-none hover:text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">How It Works</a>
 
-                            <a href="#" title="" className="text-base font-medium text-gray-700 transition-all duration-200 rounded focus:outline-none hover:text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Pricing</a>
+                            <a href="#pricing" title="" className="text-base font-medium text-gray-700 transition-all duration-200 rounded focus:outline-none hover:text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Pricing</a>
                         </div>
 
                         <div className="hidden lg:ml-auto lg:flex lg:items-center lg:space-x-10">
@@ -159,11 +159,11 @@ const Hero = () => {
                         <nav>
                             <div className="px-1 py-8">
                                 <div className="grid gap-y-6">
-                                    <a href="#" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Features</a>
+                                    <a href="#features" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Features</a>
 
-                                    <a href="#" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">How It Works</a>
+                                    <a href="#how-it-works" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">How It Works</a>
 
-                                    <a href="#" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Pricing</a>
+                                    <a href="#pricing" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Pricing</a>
 
                                     <a href="#" title="" className="flex items-center p-3 -m-3 text-base font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Login</a>
 
@@ -347,6 +347,214 @@ const Hero = () => {
                     </div>
                 </div>
 
+                {/* Features Section */}
+                <div id="features" className="py-20 bg-gray-50">
+                    <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4">Features</h2>
+                            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Everything you need for performance-based marketing</p>
+                        </div>
+                        
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {/* Feature 1 */}
+                            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                                <div className="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg className="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">Real-Time Tracking</h3>
+                                <p className="text-gray-600">Track clicks, conversions, and engagement in real-time with our advanced analytics dashboard.</p>
+                            </div>
+                            
+                            {/* Feature 2 */}
+                            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">Pay For Performance</h3>
+                                <p className="text-gray-600">Only pay for validated clicks and actual results. No wasted budget on fake engagement.</p>
+                            </div>
+                            
+                            {/* Feature 3 */}
+                            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                                <div className="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg className="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">Fraud Protection</h3>
+                                <p className="text-gray-600">Advanced bot detection and rate limiting ensure you only pay for genuine human engagement.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {/* How It Works Section */}
+                <div id="how-it-works" className="py-20 bg-white">
+                    <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+                            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Get started in three simple steps</p>
+                        </div>
+                        
+                        <div className="grid md:grid-cols-3 gap-8 relative">
+                            {/* Connection lines for desktop */}
+                            <div className="hidden md:block absolute top-1/2 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 transform -translate-y-1/2"></div>
+                            
+                            {/* Step 1 */}
+                            <div className="relative text-center">
+                                <div className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6 relative z-10">
+                                    1
+                                </div>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-3">Create Campaign</h3>
+                                <p className="text-gray-600">Marketers set up campaigns with budget, payout rates, and targeting preferences.</p>
+                            </div>
+                            
+                            {/* Step 2 */}
+                            <div className="relative text-center">
+                                <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6 relative z-10">
+                                    2
+                                </div>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-3">Share Links</h3>
+                                <p className="text-gray-600">Promoters generate unique tracking links and share them across their channels.</p>
+                            </div>
+                            
+                            {/* Step 3 */}
+                            <div className="relative text-center">
+                                <div className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6 relative z-10">
+                                    3
+                                </div>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-3">Earn Rewards</h3>
+                                <p className="text-gray-600">Track performance in real-time and get paid instantly for verified engagement.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {/* Pricing Section */}
+                <div id="pricing" className="py-20 bg-gray-50">
+                    <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h2>
+                            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Choose the plan that fits your needs</p>
+                        </div>
+                        
+                        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                            {/* Starter Plan */}
+                            <div className="bg-white rounded-2xl shadow-lg p-8 relative">
+                                <h3 className="text-xl font-semibold text-gray-900 mb-4">Starter</h3>
+                                <div className="mb-6">
+                                    <span className="text-4xl font-bold text-gray-900">Free</span>
+                                </div>
+                                <ul className="space-y-4 mb-8">
+                                    <li className="flex items-center text-gray-600">
+                                        <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Up to 1,000 clicks/month
+                                    </li>
+                                    <li className="flex items-center text-gray-600">
+                                        <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Basic analytics
+                                    </li>
+                                    <li className="flex items-center text-gray-600">
+                                        <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        5 active campaigns
+                                    </li>
+                                </ul>
+                                <button className="w-full py-3 px-6 text-gray-900 bg-gray-200 rounded-lg font-semibold hover:bg-gray-300 transition">
+                                    Get Started
+                                </button>
+                            </div>
+                            
+                            {/* Pro Plan */}
+                            <div className="bg-gradient-to-b from-cyan-500 to-purple-500 rounded-2xl shadow-xl p-8 relative transform scale-105">
+                                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-cyan-600 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                                    Most Popular
+                                </div>
+                                <h3 className="text-xl font-semibold text-white mb-4">Pro</h3>
+                                <div className="mb-6">
+                                    <span className="text-4xl font-bold text-white">$99</span>
+                                    <span className="text-white/80">/month</span>
+                                </div>
+                                <ul className="space-y-4 mb-8">
+                                    <li className="flex items-center text-white">
+                                        <svg className="w-5 h-5 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Unlimited clicks
+                                    </li>
+                                    <li className="flex items-center text-white">
+                                        <svg className="w-5 h-5 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Advanced analytics
+                                    </li>
+                                    <li className="flex items-center text-white">
+                                        <svg className="w-5 h-5 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Unlimited campaigns
+                                    </li>
+                                    <li className="flex items-center text-white">
+                                        <svg className="w-5 h-5 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Priority support
+                                    </li>
+                                </ul>
+                                <button className="w-full py-3 px-6 text-gray-900 bg-white rounded-lg font-semibold hover:bg-gray-100 transition">
+                                    Start Free Trial
+                                </button>
+                            </div>
+                            
+                            {/* Enterprise Plan */}
+                            <div className="bg-white rounded-2xl shadow-lg p-8 relative">
+                                <h3 className="text-xl font-semibold text-gray-900 mb-4">Enterprise</h3>
+                                <div className="mb-6">
+                                    <span className="text-4xl font-bold text-gray-900">Custom</span>
+                                </div>
+                                <ul className="space-y-4 mb-8">
+                                    <li className="flex items-center text-gray-600">
+                                        <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Everything in Pro
+                                    </li>
+                                    <li className="flex items-center text-gray-600">
+                                        <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Custom integrations
+                                    </li>
+                                    <li className="flex items-center text-gray-600">
+                                        <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Dedicated account manager
+                                    </li>
+                                    <li className="flex items-center text-gray-600">
+                                        <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        SLA guarantee
+                                    </li>
+                                </ul>
+                                <button className="w-full py-3 px-6 text-gray-900 bg-gray-200 rounded-lg font-semibold hover:bg-gray-300 transition">
+                                    Contact Sales
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 {/* Dashboard Mockup - Simplified */}
                 <div className="pb-20 mt-20">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
