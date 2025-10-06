@@ -293,8 +293,16 @@ const Hero = () => {
                                 {currentContent.main}
                                 <span className="relative inline-block ml-2">
                                     {/* Clean glow effect */}
-                                    <span className="absolute inset-0 bg-cyan-500 blur-xl opacity-20 scale-110"></span>
-                                    <span className="relative text-cyan-600 font-bold"> {currentContent.highlight}</span>
+                                    <span className={`absolute inset-0 ${
+                                        customerType === 'marketer' 
+                                            ? 'bg-cyan-500' 
+                                            : 'bg-purple-500'
+                                    } blur-xl opacity-20 scale-110`}></span>
+                                    <span className={`relative ${
+                                        customerType === 'marketer' 
+                                            ? 'text-cyan-600' 
+                                            : 'text-purple-600'
+                                    } font-bold`}> {currentContent.highlight}</span>
                                 </span>
                             </h1>
                             
@@ -307,7 +315,11 @@ const Hero = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
                             <Link
                                 to="/signup"
-                                className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base font-semibold text-white transition-all duration-300 rounded-lg btn-touch btn-touch-mobile bg-cyan-600 hover:bg-cyan-700 transform hover:scale-[1.02] hover:shadow-lg"
+                                className={`group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base font-semibold text-white transition-all duration-300 rounded-lg btn-touch btn-touch-mobile ${
+                                    customerType === 'marketer' 
+                                        ? 'bg-cyan-600 hover:bg-cyan-700' 
+                                        : 'bg-purple-600 hover:bg-purple-700'
+                                } transform hover:scale-[1.02] hover:shadow-lg`}
                             >
                                 <span className="relative z-10">{currentContent.cta}</span>
                             </Link>
