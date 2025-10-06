@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Pattern from './Pattern';
-import AnimatedText from './AnimatedText';
 
 const Hero = () => {
     const [expanded, setExpanded] = useState(false);
@@ -94,10 +93,11 @@ const Hero = () => {
                     <div className="max-w-2xl mx-auto text-center">
                         <h1 className="px-6 text-lg font-medium text-gray-600 tracking-wide">Performance marketing platform connecting marketers and promoters</h1>
                         <p className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight tracking-tight">
-                            Turn your
-                            <AnimatedText words={['visitors', 'content', 'audience']} />
-                            into
-                            <AnimatedText words={['profitable business', 'passive income', 'real revenue']} />
+                            Turn your visitors into profitable
+                            <span className="relative inline-flex sm:inline">
+                                <span className="bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-lg filter opacity-30 w-full h-full absolute inset-0"></span>
+                                <span className="relative"> business </span>
+                            </span>
                         </p>
 
                         <div className="px-8 sm:items-center sm:justify-center sm:px-0 sm:space-x-5 sm:flex mt-10">
