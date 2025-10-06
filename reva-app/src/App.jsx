@@ -13,6 +13,7 @@ import MyLinks from './pages/promoter/MyLinks';
 import Earnings from './pages/promoter/Earnings';
 import Payouts from './pages/promoter/Payouts';
 import Track from './pages/Track';
+import RedirectPage from './pages/RedirectPage';
 import NotFound from './pages/NotFound';
 import './App.css';
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/track/:shortCode" element={<Track />} />
+          <Route path="/r/:shortCode" element={<RedirectPage />} />
           <Route
             path="/dashboard"
             element={
