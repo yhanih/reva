@@ -36,7 +36,7 @@ export const redirectService = {
       const campaign = trackingLink.campaigns;
 
       // Check if campaign is active and has budget
-      if (!campaign.is_active) {
+      if (!campaign || !campaign.is_active) {
         return { 
           success: false, 
           error: 'Campaign is not active' 
