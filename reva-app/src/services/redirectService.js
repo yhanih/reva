@@ -2,10 +2,15 @@ import { supabase } from '../lib/supabase';
 
 export const redirectService = {
   // Get client IP address
-  getClientIP() {
-    // In a real production environment, this would be obtained from request headers
-    // For now, we'll use a placeholder
-    return 'client-ip';
+  async getClientIP() {
+    try {
+      const ipResponse = await fetch('https://api.ipify.org?format=json');
+      const ipData = await ipResponse.json();
+      return ipData.ip || 'unknown';
+    } catch (error) {
+      console.error('Error fetching IP:', error);
+      return 'unknown';
+    }
   },
 
   // Handle tracking link redirect
@@ -51,7 +56,7 @@ export const redirectService = {
       }
 
       // Record the click
-      const ipAddress = this.getClientIP();
+      const ipAddress = await this.getClientIP();
       const userAgent = navigator.userAgent;
 
       const { data: click, error: clickError } = await supabase
