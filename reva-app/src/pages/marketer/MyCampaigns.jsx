@@ -76,23 +76,23 @@ const MyCampaigns = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-          <p className="mt-4 text-gray-400">Loading campaigns...</p>
+          <p className="mt-4 text-gray-600">Loading campaigns...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black">
-      <header className="py-4 bg-black border-b border-gray-800">
+    <div className="min-h-screen bg-gray-50">
+      <header className="py-4 bg-white border-b border-gray-200">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <button
               onClick={() => navigate('/dashboard')}
-              className="text-2xl font-bold text-white hover:text-cyan-400 transition"
+              className="text-2xl font-bold text-gray-900 hover:text-cyan-400 transition"
             >
               reva
             </button>
@@ -111,22 +111,22 @@ const MyCampaigns = () => {
 
       <main className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-normal text-white">My Campaigns</h1>
-          <p className="mt-2 text-gray-400">Manage and track your marketing campaigns</p>
+          <h1 className="text-4xl font-normal text-gray-900">My Campaigns</h1>
+          <p className="mt-2 text-gray-600">Manage and track your marketing campaigns</p>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-lg">
-            <p className="text-sm text-red-400">{error}</p>
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-sm text-red-600">{error}</p>
           </div>
         )}
 
         {campaigns.length === 0 ? (
           <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl blur opacity-25"></div>
-            <div className="relative bg-gray-900 rounded-2xl p-12 text-center">
-              <h3 className="text-xl font-semibold text-white mb-4">No campaigns yet</h3>
-              <p className="text-gray-400 mb-6">Create your first campaign to get started</p>
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl blur opacity-10"></div>
+            <div className="relative bg-white rounded-2xl p-12 text-center shadow-lg border border-gray-200">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">No campaigns yet</h3>
+              <p className="text-gray-600 mb-6">Create your first campaign to get started</p>
               <button
                 onClick={() => navigate('/marketer/create-campaign')}
                 className="relative inline-flex items-center justify-center group"
@@ -142,16 +142,16 @@ const MyCampaigns = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {campaigns.map((campaign) => (
               <div key={campaign.id} className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition"></div>
-                <div className="relative bg-gray-900 rounded-2xl p-6 h-full flex flex-col">
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl blur opacity-10 group-hover:opacity-20 transition"></div>
+                <div className="relative bg-white rounded-2xl p-6 h-full flex flex-col shadow-lg border border-gray-200">
                   <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-xl font-semibold text-white flex-1">{campaign.title}</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 flex-1">{campaign.title}</h3>
                     <button
                       onClick={() => toggleCampaignStatus(campaign.id, campaign.is_active)}
                       className={`px-3 py-1 text-xs font-medium rounded-full transition ${
                         campaign.is_active
-                          ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
-                          : 'bg-gray-500/20 text-gray-400 hover:bg-gray-500/30'
+                          ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
                       {campaign.is_active ? 'Active' : 'Inactive'}
@@ -159,39 +159,39 @@ const MyCampaigns = () => {
                   </div>
 
                   {campaign.description && (
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-2">{campaign.description}</p>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">{campaign.description}</p>
                   )}
 
                   <div className="space-y-3 mb-4 flex-1">
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Budget:</span>
-                      <span className="text-white font-medium">${parseFloat(campaign.budget).toFixed(2)}</span>
+                      <span className="text-gray-600">Budget:</span>
+                      <span className="text-gray-900 font-medium">${parseFloat(campaign.budget).toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Remaining:</span>
-                      <span className="text-cyan-400 font-medium">${parseFloat(campaign.remaining_budget).toFixed(2)}</span>
+                      <span className="text-gray-600">Remaining:</span>
+                      <span className="text-cyan-600 font-medium">${parseFloat(campaign.remaining_budget).toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Payout/Click:</span>
-                      <span className="text-white font-medium">${parseFloat(campaign.payout_per_click).toFixed(2)}</span>
+                      <span className="text-gray-600">Payout/Click:</span>
+                      <span className="text-gray-900 font-medium">${parseFloat(campaign.payout_per_click).toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Total Clicks:</span>
-                      <span className="text-white font-medium">{campaign.totalClicks}</span>
+                      <span className="text-gray-600">Total Clicks:</span>
+                      <span className="text-gray-900 font-medium">{campaign.totalClicks}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Valid Clicks:</span>
-                      <span className="text-green-400 font-medium">{campaign.validClicks}</span>
+                      <span className="text-gray-600">Valid Clicks:</span>
+                      <span className="text-green-600 font-medium">{campaign.validClicks}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Total Spent:</span>
-                      <span className="text-purple-400 font-medium">${campaign.totalSpent.toFixed(2)}</span>
+                      <span className="text-gray-600">Total Spent:</span>
+                      <span className="text-purple-600 font-medium">${campaign.totalSpent.toFixed(2)}</span>
                     </div>
                   </div>
 
                   <button
                     onClick={() => navigate(`/marketer/campaigns/${campaign.id}`)}
-                    className="w-full py-2 px-4 bg-black border border-gray-700 rounded-lg text-cyan-400 hover:border-cyan-500 hover:text-cyan-300 transition text-sm font-medium"
+                    className="w-full py-2 px-4 bg-white border border-gray-300 rounded-lg text-cyan-600 hover:border-gray-400 hover:text-cyan-700 transition text-sm font-medium"
                   >
                     View Details
                   </button>
