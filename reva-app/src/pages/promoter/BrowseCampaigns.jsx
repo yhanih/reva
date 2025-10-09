@@ -14,6 +14,7 @@ const BrowseCampaigns = () => {
   const [generatingLink, setGeneratingLink] = useState({});
   const [copiedLink, setCopiedLink] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     fetchCampaigns();
@@ -50,6 +51,7 @@ const BrowseCampaigns = () => {
       setCampaigns(campaignsWithLinks);
     } catch (err) {
       console.error('Error fetching campaigns:', err);
+      setErrorMessage('Failed to load campaigns. Please refresh the page to try again.');
     } finally {
       setLoading(false);
     }
@@ -84,7 +86,8 @@ const BrowseCampaigns = () => {
       setTimeout(() => setSuccessMessage(''), 5000);
     } catch (err) {
       console.error('Error generating link:', err);
-      alert('Failed to generate tracking link. Please try again.');
+      setErrorMessage('Failed to generate tracking link. Please try again.');
+      setTimeout(() => setErrorMessage(''), 5000);
     } finally {
       setGeneratingLink(prev => ({ ...prev, [campaignId]: false }));
     }
@@ -100,6 +103,8 @@ const BrowseCampaigns = () => {
       }, 2000);
     } catch (err) {
       console.error('Failed to copy:', err);
+      setErrorMessage('Failed to copy link. Please try again.');
+      setTimeout(() => setErrorMessage(''), 3000);
     }
   };
 
@@ -125,6 +130,12 @@ const BrowseCampaigns = () => {
         {successMessage && (
           <div className="mb-6 p-4 bg-green-500/10 border border-green-500/50 rounded-lg animate-fade-in">
             <p className="text-sm text-green-400">{successMessage}</p>
+          </div>
+        )}
+        
+        {errorMessage && (
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-lg animate-fade-in">
+            <p className="text-sm text-red-400">{errorMessage}</p>
           </div>
         )}
 
