@@ -44,7 +44,7 @@ export default function Track() {
 
         const campaign = trackingLink.campaigns;
 
-        if (!campaign.is_active) {
+        if (!campaign || !campaign.is_active) {
           setStatus('error');
           setMessage('This campaign is no longer active.');
           return;
