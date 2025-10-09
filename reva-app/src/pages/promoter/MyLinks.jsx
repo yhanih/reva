@@ -86,18 +86,18 @@ const MyLinks = () => {
   const totalClicks = links.reduce((sum, link) => sum + link.totalClicks, 0);
 
   return (
-    <div className="min-h-screen bg-black">
-      <header className="py-4 bg-black border-b border-gray-800">
+    <div className="min-h-screen bg-gray-50">
+      <header className="py-4 bg-white border-b border-gray-200">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => navigate('/dashboard')}
-                className="text-gray-400 hover:text-white transition"
+                className="text-gray-600 hover:text-gray-900 transition"
               >
                 ← Back
               </button>
-              <span className="text-2xl font-bold text-white">My Links</span>
+              <span className="text-2xl font-bold text-gray-900">My Links</span>
             </div>
           </div>
         </div>
@@ -105,24 +105,24 @@ const MyLinks = () => {
 
       <main className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
         {errorMessage && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-lg animate-fade-in">
-            <p className="text-sm text-red-400">{errorMessage}</p>
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg animate-fade-in">
+            <p className="text-sm text-red-600">{errorMessage}</p>
           </div>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="relative">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-xl blur opacity-20"></div>
-            <div className="relative bg-gray-900 rounded-xl p-6 border border-gray-800">
-              <div className="text-3xl font-bold text-white">${totalEarnings.toFixed(2)}</div>
-              <div className="text-sm text-gray-400 mt-1">Total Earnings</div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-xl blur opacity-10"></div>
+            <div className="relative bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <div className="text-3xl font-bold text-gray-900">${totalEarnings.toFixed(2)}</div>
+              <div className="text-sm text-gray-600 mt-1">Total Earnings</div>
             </div>
           </div>
           <div className="relative">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl blur opacity-20"></div>
-            <div className="relative bg-gray-900 rounded-xl p-6 border border-gray-800">
-              <div className="text-3xl font-bold text-white">{totalClicks}</div>
-              <div className="text-sm text-gray-400 mt-1">Total Clicks</div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl blur opacity-10"></div>
+            <div className="relative bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <div className="text-3xl font-bold text-gray-900">{totalClicks}</div>
+              <div className="text-sm text-gray-600 mt-1">Total Clicks</div>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ const MyLinks = () => {
           </div>
         ) : links.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-400 text-lg mb-4">You haven't created any tracking links yet.</p>
+            <p className="text-gray-600 text-lg mb-4">You haven't created any tracking links yet.</p>
             <button
               onClick={() => navigate('/promoter/campaigns')}
               className="px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg hover:opacity-90 transition"
@@ -146,33 +146,33 @@ const MyLinks = () => {
             {links.map((link) => (
               <div key={link.id} className="relative">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-xl blur opacity-10"></div>
-                <div className="relative bg-gray-900 rounded-xl p-6 border border-gray-800">
+                <div className="relative bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white mb-2">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
                         {link.campaign?.title || 'Campaign'}
                       </h3>
-                      <div className="bg-black rounded-lg p-3 border border-gray-800 mb-3">
-                        <div className="text-xs text-gray-400 mb-1">Tracking link:</div>
+                      <div className="bg-gray-50 rounded-lg p-3 border border-gray-200 mb-3">
+                        <div className="text-xs text-gray-600 mb-1">Tracking link:</div>
                         <div className="text-cyan-400 text-sm font-mono break-all">
                           {window.location.origin}/track/{link.short_code}
                         </div>
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         <div>
-                          <div className="text-sm text-gray-400">Total Clicks</div>
-                          <div className="text-white font-semibold">{link.totalClicks}</div>
+                          <div className="text-sm text-gray-600">Total Clicks</div>
+                          <div className="text-gray-900 font-semibold">{link.totalClicks}</div>
                         </div>
                         <div>
-                          <div className="text-sm text-gray-400">Valid Clicks</div>
+                          <div className="text-sm text-gray-600">Valid Clicks</div>
                           <div className="text-green-400 font-semibold">{link.validClicks}</div>
                         </div>
                         <div>
-                          <div className="text-sm text-gray-400">Today</div>
+                          <div className="text-sm text-gray-600">Today</div>
                           <div className="text-purple-400 font-semibold">{link.clicksToday}</div>
                         </div>
                         <div>
-                          <div className="text-sm text-gray-400">Earnings</div>
+                          <div className="text-sm text-gray-600">Earnings</div>
                           <div className="text-green-400 font-semibold">${link.totalEarnings.toFixed(2)}</div>
                         </div>
                       </div>

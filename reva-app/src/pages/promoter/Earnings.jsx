@@ -100,26 +100,26 @@ const Earnings = () => {
 
   const getStatusBadge = (status) => {
     switch (status) {
-      case 'pending': return 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20';
-      case 'approved': return 'bg-green-500/10 text-green-400 border-green-500/20';
-      case 'paid': return 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20';
-      default: return 'bg-gray-500/10 text-gray-400 border-gray-500/20';
+      case 'pending': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+      case 'approved': return 'bg-green-100 text-green-700 border-green-200';
+      case 'paid': return 'bg-cyan-100 text-cyan-700 border-cyan-200';
+      default: return 'bg-gray-100 text-gray-700 border-gray-200';
     }
   };
 
   return (
-    <div className="min-h-screen bg-black">
-      <header className="py-4 bg-black border-b border-gray-800">
+    <div className="min-h-screen bg-gray-50">
+      <header className="py-4 bg-white border-b border-gray-200">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => navigate('/dashboard')}
-                className="text-gray-400 hover:text-white transition"
+                className="text-gray-600 hover:text-gray-900 transition"
               >
                 ← Back
               </button>
-              <span className="text-2xl font-bold text-white">Earnings</span>
+              <span className="text-2xl font-bold text-gray-900">Earnings</span>
             </div>
           </div>
         </div>
@@ -128,31 +128,31 @@ const Earnings = () => {
       <main className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="relative">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-xl blur opacity-20"></div>
-            <div className="relative bg-gray-900 rounded-xl p-6 border border-gray-800">
-              <div className="text-3xl font-bold text-white">${totalEarnings.toFixed(2)}</div>
-              <div className="text-sm text-gray-400 mt-1">Total Earnings</div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-xl blur opacity-10"></div>
+            <div className="relative bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <div className="text-3xl font-bold text-gray-900">${totalEarnings.toFixed(2)}</div>
+              <div className="text-sm text-gray-600 mt-1">Total Earnings</div>
             </div>
           </div>
           <div className="relative">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl blur opacity-20"></div>
-            <div className="relative bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl blur opacity-10"></div>
+            <div className="relative bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
               <div className="text-3xl font-bold text-yellow-400">${pendingEarnings.toFixed(2)}</div>
-              <div className="text-sm text-gray-400 mt-1">Pending</div>
+              <div className="text-sm text-gray-600 mt-1">Pending</div>
             </div>
           </div>
           <div className="relative">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl blur opacity-20"></div>
-            <div className="relative bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl blur opacity-10"></div>
+            <div className="relative bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
               <div className="text-3xl font-bold text-green-400">${approvedEarnings.toFixed(2)}</div>
-              <div className="text-sm text-gray-400 mt-1">Approved</div>
+              <div className="text-sm text-gray-600 mt-1">Approved</div>
             </div>
           </div>
           <div className="relative">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl blur opacity-20"></div>
-            <div className="relative bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl blur opacity-10"></div>
+            <div className="relative bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
               <div className="text-3xl font-bold text-cyan-400">${paidEarnings.toFixed(2)}</div>
-              <div className="text-sm text-gray-400 mt-1">Paid</div>
+              <div className="text-sm text-gray-600 mt-1">Paid</div>
             </div>
           </div>
         </div>
@@ -165,28 +165,28 @@ const Earnings = () => {
           <>
             {campaignBreakdown.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">Earnings by Campaign</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 mb-4">Earnings by Campaign</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {campaignBreakdown.map((campaign) => (
                     <div key={campaign.campaignId} className="relative">
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-xl blur opacity-10"></div>
-                      <div className="relative bg-gray-900 rounded-xl p-6 border border-gray-800">
-                        <h3 className="text-lg font-semibold text-white mb-3">{campaign.campaignTitle}</h3>
+                      <div className="relative bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">{campaign.campaignTitle}</h3>
                         <div className="space-y-2">
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-400">Total:</span>
-                            <span className="text-white font-semibold">${campaign.totalEarnings.toFixed(2)}</span>
+                            <span className="text-sm text-gray-600">Total:</span>
+                            <span className="text-gray-900 font-semibold">${campaign.totalEarnings.toFixed(2)}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-400">Pending:</span>
+                            <span className="text-sm text-gray-600">Pending:</span>
                             <span className="text-yellow-400">${campaign.pending.toFixed(2)}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-400">Approved:</span>
+                            <span className="text-sm text-gray-600">Approved:</span>
                             <span className="text-green-400">${campaign.approved.toFixed(2)}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-400">Paid:</span>
+                            <span className="text-sm text-gray-600">Paid:</span>
                             <span className="text-cyan-400">${campaign.paid.toFixed(2)}</span>
                           </div>
                         </div>
@@ -198,12 +198,12 @@ const Earnings = () => {
             )}
 
             <div className="mb-8">
-              <h2 className="text-2xl font-semibold text-white mb-4">Recent Earnings</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Recent Earnings</h2>
               <div className="flex gap-4 mb-4">
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
-                  className="px-4 py-2 bg-gray-900 text-white border border-gray-800 rounded-lg focus:outline-none focus:border-purple-500"
+                  className="px-4 py-2 bg-white text-gray-900 border border-gray-200 rounded-lg focus:outline-none focus:border-purple-500"
                 >
                   <option value="all">All Status</option>
                   <option value="pending">Pending</option>
@@ -213,7 +213,7 @@ const Earnings = () => {
                 <select
                   value={dateRange}
                   onChange={(e) => setDateRange(e.target.value)}
-                  className="px-4 py-2 bg-gray-900 text-white border border-gray-800 rounded-lg focus:outline-none focus:border-purple-500"
+                  className="px-4 py-2 bg-white text-gray-900 border border-gray-200 rounded-lg focus:outline-none focus:border-purple-500"
                 >
                   <option value="all">All Time</option>
                   <option value="today">Today</option>
@@ -225,7 +225,7 @@ const Earnings = () => {
 
             {filteredEarnings.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-gray-400 text-lg mb-4">No earnings to display.</p>
+                <p className="text-gray-600 text-lg mb-4">No earnings to display.</p>
                 <button
                   onClick={() => navigate('/promoter/campaigns')}
                   className="px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg hover:opacity-90 transition"
@@ -238,13 +238,13 @@ const Earnings = () => {
                 {filteredEarnings.map((earning) => (
                   <div key={earning.id} className="relative">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-xl blur opacity-5"></div>
-                    <div className="relative bg-gray-900 rounded-xl p-4 border border-gray-800">
+                    <div className="relative bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <div className="flex-1">
-                          <h4 className="text-white font-semibold mb-1">
+                          <h4 className="text-gray-900 font-semibold mb-1">
                             {earning.campaign?.title || 'Unknown Campaign'}
                           </h4>
-                          <p className="text-sm text-gray-400">
+                          <p className="text-sm text-gray-600">
                             {new Date(earning.created_at).toLocaleDateString('en-US', {
                               year: 'numeric',
                               month: 'short',
@@ -256,7 +256,7 @@ const Earnings = () => {
                         </div>
                         <div className="flex items-center gap-4">
                           <div className="text-right">
-                            <div className="text-2xl font-bold text-white">${parseFloat(earning.amount).toFixed(2)}</div>
+                            <div className="text-2xl font-bold text-gray-900">${parseFloat(earning.amount).toFixed(2)}</div>
                           </div>
                           <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${getStatusBadge(earning.status)}`}>
                             {earning.status.charAt(0).toUpperCase() + earning.status.slice(1)}
