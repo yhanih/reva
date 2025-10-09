@@ -9,6 +9,7 @@ const MyLinks = () => {
   const [links, setLinks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [copiedLink, setCopiedLink] = useState({});
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     fetchLinks();
@@ -60,6 +61,7 @@ const MyLinks = () => {
       setLinks(linksWithStats);
     } catch (err) {
       console.error('Error fetching links:', err);
+      setErrorMessage('Failed to load your links. Please refresh the page to try again.');
     } finally {
       setLoading(false);
     }
@@ -75,6 +77,8 @@ const MyLinks = () => {
       }, 2000);
     } catch (err) {
       console.error('Failed to copy:', err);
+      setErrorMessage('Failed to copy link. Please try again.');
+      setTimeout(() => setErrorMessage(''), 3000);
     }
   };
 
@@ -100,6 +104,12 @@ const MyLinks = () => {
       </header>
 
       <main className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        {errorMessage && (
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-lg animate-fade-in">
+            <p className="text-sm text-red-400">{errorMessage}</p>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="relative">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-xl blur opacity-20"></div>
