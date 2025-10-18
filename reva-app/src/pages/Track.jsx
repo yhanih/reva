@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import { fetchWithTimeout } from '../utils/helpers';
 
 export default function Track() {
   const { shortCode } = useParams();
@@ -12,11 +13,12 @@ export default function Track() {
       try {
         let ipAddress = 'unknown';
         try {
-          const ipResponse = await fetch('https://api.ipify.org?format=json');
+          const ipResponse = await fetchWithTimeout('https://api.ipify.org?format=json', 5000);
           const ipData = await ipResponse.json();
           ipAddress = ipData.ip || 'unknown';
         } catch (error) {
           console.error('Error fetching IP:', error);
+          // Continue with 'unknown' - don't block the click tracking
         }
 
         const userAgent = navigator.userAgent || '';

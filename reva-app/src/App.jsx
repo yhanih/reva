@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import ErrorBoundary from './components/ErrorBoundary';
 import Hero from './components/Hero';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -19,12 +20,13 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+    <ErrorBoundary>
+      <Router>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
           <Route path="/track/:shortCode" element={<Track />} />
           <Route path="/r/:shortCode" element={<RedirectPage />} />
           <Route
@@ -95,6 +97,7 @@ function App() {
         </Routes>
       </AuthProvider>
     </Router>
+    </ErrorBoundary>
   );
 }
 

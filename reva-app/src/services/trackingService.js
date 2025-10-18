@@ -29,41 +29,39 @@ export const trackingService = {
         return { data: existingLink, error: null };
       }
 
-      // Create new tracking link
-      let shortCode;
-      let isUnique = false;
+      // Create new tracking link with retry logic for collisions
       let attempts = 0;
+      const maxAttempts = 10;
 
-      while (!isUnique && attempts < 10) {
-        shortCode = this.generateShortCode();
-        const { data: existing } = await supabase
+      while (attempts < maxAttempts) {
+        const shortCode = this.generateShortCode();
+        
+        const { data, error } = await supabase
           .from('tracking_links')
-          .select('id')
-          .eq('short_code', shortCode)
+          .insert([{
+            campaign_id: campaignId,
+            promoter_id: user.id,
+            short_code: shortCode
+          }])
+          .select()
           .single();
 
-        if (!existing) {
-          isUnique = true;
+        // If no error, we succeeded
+        if (!error) {
+          return { data, error: null };
         }
+
+        // If error is NOT a uniqueness violation, throw it
+        const errorMessage = error.message?.toLowerCase() || '';
+        if (!errorMessage.includes('unique') && !errorMessage.includes('duplicate')) {
+          throw error;
+        }
+
+        // Otherwise, it was a collision, try again
         attempts++;
       }
 
-      if (!isUnique) {
-        throw new Error('Could not generate unique short code');
-      }
-
-      const { data, error } = await supabase
-        .from('tracking_links')
-        .insert([{
-          campaign_id: campaignId,
-          promoter_id: user.id,
-          short_code: shortCode
-        }])
-        .select()
-        .single();
-
-      if (error) throw error;
-      return { data, error: null };
+      throw new Error(`Could not generate unique short code after ${maxAttempts} attempts`);
     } catch (error) {
       console.error('Error creating tracking link:', error);
       return { data: null, error };
@@ -218,7 +216,7 @@ export const trackingService = {
 
   // Build full tracking URL
   buildTrackingUrl(shortCode) {
-    const baseUrl = window.location.origin;
+    const baseUrl = import.meta.env.VITE_APP_URL || window.location.origin;
     return `${baseUrl}/r/${shortCode}`;
   }
 };
