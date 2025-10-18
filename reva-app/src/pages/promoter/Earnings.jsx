@@ -89,14 +89,7 @@ const Earnings = () => {
   const approvedEarnings = earnings.filter(e => e.status === 'approved').reduce((sum, e) => sum + parseFloat(e.amount), 0);
   const paidEarnings = earnings.filter(e => e.status === 'paid').reduce((sum, e) => sum + parseFloat(e.amount), 0);
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'pending': return 'text-yellow-400';
-      case 'approved': return 'text-green-400';
-      case 'paid': return 'text-cyan-400';
-      default: return 'text-gray-400';
-    }
-  };
+  //
 
   const getStatusBadge = (status) => {
     switch (status) {

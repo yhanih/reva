@@ -62,7 +62,7 @@ const BrowseCampaigns = () => {
     try {
       const shortCode = nanoid();
       
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('tracking_links')
         .insert([
           {

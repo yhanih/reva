@@ -43,7 +43,7 @@ const Signup = () => {
       return;
     }
 
-    const { data, error: signupError } = await signup(email, password, role);
+    const { error: signupError } = await signup(email, password, role);
 
     if (signupError) {
       setError(signupError.message || 'Failed to create account');

@@ -21,7 +21,7 @@ const Login = () => {
       return;
     }
 
-    const { data, error: loginError } = await login(email, password);
+    const { error: loginError } = await login(email, password);
 
     if (loginError) {
       setError(loginError.message || 'Failed to login');
