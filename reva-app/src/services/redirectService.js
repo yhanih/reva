@@ -1,10 +1,11 @@
 import { supabase } from '../lib/supabase';
+import { fetchWithTimeout } from '../utils/helpers';
 
 export const redirectService = {
   // Get client IP address
   async getClientIP() {
     try {
-      const ipResponse = await fetch('https://api.ipify.org?format=json');
+      const ipResponse = await fetchWithTimeout('https://api.ipify.org?format=json', 5000);
       const ipData = await ipResponse.json();
       return ipData.ip || 'unknown';
     } catch (error) {

@@ -393,7 +393,9 @@ const Dashboard = () => {
                         <div className="flex justify-between items-center mb-2">
                           <span className="text-sm text-gray-600">Average Earning per Click</span>
                           <span className="text-2xl font-bold text-gray-900">
-                            ${(promoterStats.totalEarnings / promoterStats.totalClicks).toFixed(2)}
+                            ${promoterStats.totalClicks > 0 
+                              ? (promoterStats.totalEarnings / promoterStats.totalClicks).toFixed(2)
+                              : '0.00'}
                           </span>
                         </div>
                       </div>
