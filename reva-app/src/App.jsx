@@ -18,46 +18,6 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/track/:shortCode" element={<Track />} />
           <Route path="/r/:shortCode" element={<RedirectPage />} />
-          <Route
-            path="/dashboard"
-            element={
-            }
-          />
-          <Route
-            element={
-                <CreateCampaign />
-            }
-          />
-          <Route
-            element={
-                <MyCampaigns />
-            }
-          />
-          <Route
-            element={
-                <CampaignDetails />
-            }
-          />
-          <Route
-            element={
-                <BrowseCampaigns />
-            }
-          />
-          <Route
-            element={
-                <MyLinks />
-            }
-          />
-          <Route
-            element={
-                <Earnings />
-            }
-          />
-          <Route
-            element={
-                <Payouts />
-            }
-          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthProvider>
