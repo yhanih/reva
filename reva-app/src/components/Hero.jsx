@@ -328,7 +328,7 @@ const Hero = () => {
                                 to="/login"
                                 className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-lg btn-touch btn-touch-mobile transition-all duration-300 hover:border-gray-300 hover:shadow-md transform hover:scale-[1.02]"
                             >
-                                <span className="relative z-10">Sign In</span>
+                                <a href="https://d434da6b-8172-495c-a825-2c0b41707b84-00-x61wm8snhj3m.worf.replit.dev:8008/auth/sign-in" className="relative z-10">Sign In</a>
                             </Link>
                         </div>
 

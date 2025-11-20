@@ -3,7 +3,6 @@ import { AuthProvider } from './contexts/AuthContext';
 import Hero from './components/Hero';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import CreateCampaign from './pages/marketer/CreateCampaign';
 import MyCampaigns from './pages/marketer/MyCampaigns';
@@ -31,7 +30,6 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <Dashboard />
               </ProtectedRoute>
             }
           />

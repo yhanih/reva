@@ -5,7 +5,7 @@ integrations = ["javascript_supabase:1.0.0"]
 
 [nix]
 channel = "stable-25_05"
-packages = ["samba4Full", "nettools", "nix-output-monitor"]
+packages = ["samba4Full", "nettools", "nix-output-monitor", "tree", "nano"]
 
 [workflows]
 runButton = "Project"
@@ -32,6 +32,10 @@ args = "cd reva-app && npm run dev -- --port 5000 --host 0.0.0.0"
 waitForPort = 5000
 
 [[ports]]
+localPort = 3000
+externalPort = 8008
+
+[[ports]]
 localPort = 5000
 externalPort = 80
 
@@ -50,10 +54,6 @@ externalPort = 3003
 [[ports]]
 localPort = 37933
 externalPort = 8000
-
-[[ports]]
-localPort = 40205
-externalPort = 8008
 
 [[ports]]
 localPort = 41855
