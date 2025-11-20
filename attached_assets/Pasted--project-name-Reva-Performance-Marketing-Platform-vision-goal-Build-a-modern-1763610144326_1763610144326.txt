@@ -1,0 +1,188 @@
+{
+  "project_name": "Reva Performance Marketing Platform",
+  "vision": {
+    "goal": "Build a modern two-app architecture where the public marketing site and the private Horizon UI dashboard work together seamlessly using a shared Supabase backend.",
+    "product_promise": "Reva transforms links into revenue. Marketers create campaigns, promoters share them, and the platform tracks clicks, earnings, analytics, and payouts—all inside a clean Horizon UI dashboard."
+  },
+
+  "architecture": {
+    "type": "multi-app, single-repo",
+    "structure": {
+      "homepage": {
+        "location": "reva-app/",
+        "framework": "React + Vite",
+        "purpose": "Public landing page for marketing, intro, CTA. Handles redirect to Horizon dashboard login.",
+        "features": [
+          "Hero section (marketing)",
+          "Features, pricing, why Reva",
+          "Sign In button (links to /dashboard auth)",
+          "No protected pages",
+          "No dashboard UI at all"
+        ],
+        "routing": {
+          "public": ["/"],
+          "redirect_to_dashboard_login": "/auth/sign-in (dashboard app)"
+        },
+        "supabase_usage": {
+          "minimal": "Only for homepage login/signup if needed",
+          "env_vars": [
+            "VITE_SUPABASE_URL",
+            "VITE_SUPABASE_ANON_KEY"
+          ]
+        }
+      },
+
+      "dashboard": {
+        "location": "reva-app/dashboard/",
+        "framework": "Create React App + Horizon UI Tailwind",
+        "purpose": "Main authenticated hub where users manage campaigns, track earnings, access dashboards, view analytics, and handle payouts.",
+        "ui_style": {
+          "base": "Horizon UI",
+          "design_traits": [
+            "dark + light mode support",
+            "glassmorphism cards",
+            "elevated panels",
+            "sidebar navigation",
+            "dashboard charts",
+            "NFT-style card layout (customizable)"
+          ],
+          "customization_goal": "Use Horizon UI components but rebrand everything to match Reva’s identity (purple, neon gradients, monetization aesthetic)."
+        },
+        "features": [
+          "Supabase-powered authentication",
+          "Role-based routing (marketer, promoter)",
+          "Protected routes",
+          "Dashboard analytics",
+          "Campaign management",
+          "Link tracking",
+          "Earnings & payouts",
+          "User profile management"
+        ],
+        "authentication": {
+          "provider": "Supabase",
+          "components_added": [
+            "supabaseClient.js",
+            "AuthContext.js",
+            "auth.js (login & logout)"
+          ],
+          "login_flow": [
+            "User arrives at /auth/sign-in",
+            "User enters email + password",
+            "Supabase verifies credentials",
+            "AuthProvider stores session",
+            "App.jsx checks session",
+            "If not logged in → redirect to /auth/sign-in",
+            "If logged in → redirect to dashboard homepage"
+          ],
+          "logout_flow": [
+            "User clicks Sign Out (sidebar)",
+            "Supabase signs out",
+            "AuthContext clears session",
+            "Redirect to /auth/sign-in"
+          ],
+          "env_vars": [
+            "REACT_APP_SUPABASE_URL",
+            "REACT_APP_SUPABASE_ANON_KEY"
+          ]
+        }
+      }
+    }
+  },
+
+  "deleted_elements": {
+    "old_reva_dashboard": {
+      "location": "reva-app/src/pages/",
+      "removed_files": [
+        "Dashboard.jsx",
+        "marketer/",
+        "promoter/"
+      ],
+      "reason": "These were replaced by the Horizon UI dashboard."
+    }
+  },
+
+  "final_user_flow": {
+    "1_homepage": {
+      "url": "/",
+      "experience": [
+        "User sees a clean, modern, persuasive landing page",
+        "Sees CTAs: 'Marketer' / 'Promoter'",
+        "Clicks 'Sign In' → goes to dashboard login"
+      ]
+    },
+    "2_redirect_to_dashboard": {
+      "login_url": "https://<your-replit-or-vps-domain>/auth/sign-in",
+      "purpose": "Enter real Horizon UI dashboard login page (not fake template)."
+    },
+    "3_login": {
+      "user_action": "Enter email + password",
+      "backend": "Supabase Auth",
+      "result_if_correct": "User enters Horizon Dashboard",
+      "result_if_incorrect": "Error message: Login failed"
+    },
+    "4_dashboard": {
+      "appearance": "Horizon UI-styled admin panel",
+      "sections": [
+        "Dashboard overview (charts & cards)",
+        "Campaigns",
+        "Links",
+        "Earnings",
+        "Payouts",
+        "User profile"
+      ],
+      "session": "Managed by AuthProvider with Supabase session listeners"
+    },
+    "5_logout": {
+      "action": "Click Sign Out in sidebar",
+      "result": "Supabase signs out → redirect to /auth/sign-in"
+    }
+  },
+
+  "development_rules_for_ai": {
+    "never_modify": [
+      "homepage auth unless asked",
+      "homepage routing unless asked",
+      "supabase auth keys",
+      "reva-app/src/pages (dashboard files no longer exist)"
+    ],
+    "always_modify": [
+      "dashboard files inside reva-app/dashboard/",
+      "Horizon UI components",
+      "layout structure",
+      "sidebar navigation",
+      "Supabase data integration in dashboard"
+    ],
+    "assumptions": {
+      "dashboard_is_primary_app": true,
+      "homepage_is_marketing_site": true,
+      "all_data_comes_from_supabase": true,
+      "roles_exist_in_supabase_profiles_table": true,
+      "user_interface_should_follow_horizon_ui_style": true
+    },
+    "ai_tasks_allowed": [
+      "Add new dashboard pages",
+      "Connect pages to Supabase tables",
+      "Modify Horizon UI styling",
+      "Add charts, cards, analytics",
+      "Add promoter/marketer dashboards",
+      "Implement campaign creation flows",
+      "Modify sidebar navigation",
+      "Add settings panel",
+      "Integrate payments (e.g., Stripe)",
+      "Optimize auth flow"
+    ]
+  },
+
+  "future_look": {
+    "goal": "A polished SaaS dashboard with Horizon UI styling and full Supabase data integration.",
+    "homepage_vision": "A visually stunning marketing site that sells the Reva concept with storytelling and strong conversion design.",
+    "dashboard_vision": "A premium Horizon UI-based interface that feels like Notion x Stripe x Webflow but for performance marketing.",
+    "deployment": {
+      "target": "VPS with Nginx",
+      "structure": {
+        "homepage_on_root_domain": "https://reva.com",
+        "dashboard_on_subdomain": "https://dashboard.reva.com"
+      }
+    }
+  }
+}
