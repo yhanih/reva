@@ -1,7 +1,7 @@
 import React from "react";
 import Dropdown from "components/dropdown";
 import { FiAlignJustify } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import navbarimage from "assets/img/layout/Navbar.png";
 import { BsArrowBarUp } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
@@ -11,32 +11,23 @@ import {
   IoMdInformationCircleOutline,
 } from "react-icons/io";
 import avatar from "assets/img/avatars/avatar4.png";
+import { supabase } from "../../supabaseClient";
+import { useAuth } from "../../AuthContext";
 
 const Navbar = (props) => {
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = React.useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/auth/sign-in');
+  };
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
       <div className="ml-[6px]">
-        <div className="h-6 w-[224px] pt-1">
-          <a
-            className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            href=" "
-          >
-            Pages
-            <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
-              {" "}
-              /{" "}
-            </span>
-          </a>
-          <Link
-            className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            to="#"
-          >
-            {brandText}
-          </Link>
-        </div>
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
           <Link
             to="#"
@@ -89,7 +80,7 @@ const Navbar = (props) => {
                 </div>
                 <div className="ml-2 flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm">
                   <p className="mb-1 text-left text-base font-bold text-gray-900 dark:text-white">
-                    New Update: Horizon UI Dashboard PRO
+                    New Update: Reava Dashboard
                   </p>
                   <p className="font-base text-left text-xs text-gray-900 dark:text-white">
                     A new update for your downloaded item is available!
@@ -103,7 +94,7 @@ const Navbar = (props) => {
                 </div>
                 <div className="ml-2 flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm">
                   <p className="mb-1 text-left text-base font-bold text-gray-900 dark:text-white">
-                    New Update: Horizon UI Dashboard PRO
+                    New Update: Reava Dashboard
                   </p>
                   <p className="font-base text-left text-xs text-gray-900 dark:text-white">
                     A new update for your downloaded item is available!
@@ -136,7 +127,7 @@ const Navbar = (props) => {
                 href="https://horizon-ui.com/pro?ref=live-free-tailwind-react"
                 className="px-full linear flex cursor-pointer items-center justify-center rounded-xl bg-brand-500 py-[11px] font-bold text-white transition duration-200 hover:bg-brand-600 hover:text-white active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:bg-brand-200"
               >
-                Buy Horizon UI PRO
+                Buy Reava PRO
               </a>
               <a
                 target="blank"
@@ -181,7 +172,7 @@ const Navbar = (props) => {
             <img
               className="h-10 w-10 rounded-full"
               src={avatar}
-              alt="Elon Musk"
+              alt="User Avatar"
             />
           }
           children={
@@ -189,38 +180,71 @@ const Navbar = (props) => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                    👋 Hey, Adela
+                    👋 Hey, {user?.email?.split('@')[0] || 'User'}
                   </p>{" "}
                 </div>
               </div>
               <div className="h-px w-full bg-gray-200 dark:bg-white/20 " />
 
               <div className="flex flex-col p-4">
-                <a
-                  href=" "
-                  className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
-                >
-                  Profile Settings
-                </a>
-                <a
-                  href=" "
-                  className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
-                >
-                  Newsletter Settings
-                </a>
-                <a
-                  href=" "
-                  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500 transition duration-150 ease-out hover:ease-in"
+                {/* Role-based Links */}
+                {user?.user_metadata?.role === 'marketer' ? (
+                  <>
+                    <Link
+                      to="/admin/profile"
+                      className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                    >
+                      Company Profile
+                    </Link>
+                    <Link
+                      to="/admin/billing"
+                      className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                    >
+                      Billing
+                    </Link>
+                    <Link
+                      to="/admin/team"
+                      className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                    >
+                      Team
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/admin/profile"
+                      className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                    >
+                      My Profile
+                    </Link>
+                    <Link
+                      to="/admin/earnings"
+                      className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                    >
+                      Earnings
+                    </Link>
+                    <Link
+                      to="/admin/settings"
+                      className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                    >
+                      Payout Methods
+                    </Link>
+                  </>
+                )}
+                <div className="mt-3 h-px w-full bg-gray-200 dark:bg-white/20 " />
+                <button
+                  onClick={handleLogout}
+                  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500 transition duration-150 ease-out hover:ease-in text-left"
                 >
                   Log Out
-                </a>
+                </button>
               </div>
             </div>
           }
           classNames={"py-2 top-8 -left-[180px] w-max"}
         />
       </div>
-    </nav>
+    </nav >
   );
 };
 

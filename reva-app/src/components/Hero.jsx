@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import Pattern from './Pattern';
 
 const Hero = () => {
     const [expanded, setExpanded] = useState(false);
     const [customerType, setCustomerType] = useState('marketer');
     const [isAutoRotating, setIsAutoRotating] = useState(true);
-    
+
     // Scroll tracking state
     const [scrollProgress, setScrollProgress] = useState(0);
     const [isNavbarSticky, setIsNavbarSticky] = useState(false);
@@ -16,7 +15,7 @@ const Hero = () => {
     // Auto-rotate between customer types
     useEffect(() => {
         if (!isAutoRotating) return;
-        
+
         const interval = setInterval(() => {
             setCustomerType(prev => prev === 'marketer' ? 'promoter' : 'marketer');
         }, 4000); // Rotate every 4 seconds
@@ -32,25 +31,25 @@ const Hero = () => {
             setIsAutoRotating(false);
         }
     }, []);
-    
+
     // Scroll tracking for cinematic effects
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
             const heroHeight = heroRef.current?.offsetHeight || windowHeight;
-            
+
             // Calculate scroll progress (0 to 1)
             const progress = Math.min(scrollY / (heroHeight * 0.8), 1);
             setScrollProgress(progress);
-            
+
             // Make navbar sticky after scrolling past 50px
             setIsNavbarSticky(scrollY > 50);
         };
-        
+
         window.addEventListener('scroll', handleScroll);
         handleScroll(); // Call once to set initial state
-        
+
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -89,7 +88,7 @@ const Hero = () => {
         setIsAutoRotating(false);
         localStorage.setItem('customerType', type);
     };
-    
+
     // Calculate dynamic values for animations
     const heroScale = 1 - scrollProgress * 0.1; // Scale down to 0.9
     const heroOpacity = 1 - scrollProgress * 0.8; // Fade to 0.2
@@ -102,14 +101,14 @@ const Hero = () => {
             <div className="fixed inset-0 overflow-hidden z-0">
                 <Pattern />
             </div>
-            
+
             {/* Sticky Navbar */}
             <header className={`${isNavbarSticky ? 'fixed top-0' : 'absolute'} left-0 right-0 py-4 md:py-6 z-50 transition-all duration-300`}>
                 <div className="container px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between">
                         <div className="flex-shrink-0">
                             <a href="#" title="" className="flex">
-                                <span className="text-2xl font-bold tracking-tight text-gray-900">Reva</span>
+                                <span className="text-2xl font-bold tracking-tight text-gray-900">Reava</span>
                             </a>
                         </div>
 
@@ -142,10 +141,10 @@ const Hero = () => {
                         </div>
 
                         <div className="hidden lg:ml-auto lg:flex lg:items-center lg:space-x-10">
-                            <a href="#" title="" className="text-base font-medium text-gray-700 transition-all duration-200 rounded focus:outline-none hover:text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Login</a>
+                            <a href={`${import.meta.env.VITE_DASHBOARD_URL || 'http://localhost:3000'}/auth/sign-in`} title="" className="text-base font-medium text-gray-700 transition-all duration-200 rounded focus:outline-none hover:text-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2">Login</a>
 
                             <a
-                                href="#"
+                                href={`${import.meta.env.VITE_DASHBOARD_URL || 'http://localhost:3000'}/auth/sign-up`}
                                 title=""
                                 className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold leading-7 text-white transition-all duration-200 bg-gray-900 border border-transparent rounded-xl hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-900/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                                 role="button"
@@ -162,11 +161,11 @@ const Hero = () => {
                                 {/* Mobile Menu Header */}
                                 <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
                                     <a href="#" title="" className="flex">
-                                        <span className="text-2xl font-bold tracking-tight text-gray-900">Reva</span>
+                                        <span className="text-2xl font-bold tracking-tight text-gray-900">Reava</span>
                                     </a>
-                                    <button 
-                                        type="button" 
-                                        className="p-2 text-gray-900 rounded-lg hover:bg-gray-100 touch-target" 
+                                    <button
+                                        type="button"
+                                        className="p-2 text-gray-900 rounded-lg hover:bg-gray-100 touch-target"
                                         onClick={() => setExpanded(false)}
                                     >
                                         <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -174,37 +173,37 @@ const Hero = () => {
                                         </svg>
                                     </button>
                                 </div>
-                                
+
                                 {/* Mobile Menu Content */}
                                 <nav className="flex-1 overflow-y-auto">
                                     <div className="px-4 py-6">
                                         <div className="space-y-1">
-                                            <a 
-                                                href="#features" 
+                                            <a
+                                                href="#features"
                                                 onClick={() => setExpanded(false)}
                                                 className="block px-4 py-3 text-lg font-medium text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
                                             >
                                                 Features
                                             </a>
-                                            <a 
-                                                href="#how-it-works" 
+                                            <a
+                                                href="#how-it-works"
                                                 onClick={() => setExpanded(false)}
                                                 className="block px-4 py-3 text-lg font-medium text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
                                             >
                                                 How It Works
                                             </a>
-                                            <a 
-                                                href="#pricing" 
+                                            <a
+                                                href="#pricing"
                                                 onClick={() => setExpanded(false)}
                                                 className="block px-4 py-3 text-lg font-medium text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
                                             >
                                                 Pricing
                                             </a>
                                         </div>
-                                        
+
                                         <div className="pt-6 mt-6 border-t border-gray-100">
-                                            <a 
-                                                href="#" 
+                                            <a
+                                                href={`${import.meta.env.VITE_DASHBOARD_URL || 'http://localhost:3000'}/auth/sign-in`}
                                                 onClick={() => setExpanded(false)}
                                                 className="block px-4 py-3 text-lg font-medium text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
                                             >
@@ -212,7 +211,7 @@ const Hero = () => {
                                             </a>
                                             <div className="mt-4 px-4">
                                                 <a
-                                                    href="#"
+                                                    href={`${import.meta.env.VITE_DASHBOARD_URL || 'http://localhost:3000'}/auth/sign-up`}
                                                     onClick={() => setExpanded(false)}
                                                     className="flex items-center justify-center w-full px-6 py-3 text-base font-semibold text-white bg-gray-900 rounded-xl hover:bg-gray-700 transition-all duration-200"
                                                 >
@@ -229,7 +228,7 @@ const Hero = () => {
             </header>
 
             {/* Hero Section with Cinematic Effects */}
-            <section 
+            <section
                 ref={heroRef}
                 className="relative min-h-screen"
                 style={{
@@ -244,8 +243,8 @@ const Hero = () => {
                 <div className={`${isNavbarSticky ? 'pt-20' : ''} transition-all duration-300`}>
                     {/* Clean overlay for consistency */}
                     <div className="absolute inset-0 pointer-events-none z-10"></div>
-                    
-                    <div 
+
+                    <div
                         ref={heroContentRef}
                         className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-20"
                         style={{
@@ -254,105 +253,99 @@ const Hero = () => {
                         }}
                     >
                         <div className="max-w-3xl mx-auto text-center pt-20">
-                        {/* Premium Segmented Control */}
-                        <div className="flex justify-center mb-10">
-                            <div className="relative inline-flex bg-gray-100/80 backdrop-blur-sm rounded-full p-1 shadow-xl shadow-gray-900/5">
-                                {/* Sliding background indicator */}
-                                <div
-                                    className={`absolute inset-y-1 transition-all duration-300 ease-out ${
-                                        customerType === 'marketer' ? 'left-1' : 'left-[50%]'
-                                    } w-[calc(50%-4px)] bg-white rounded-full shadow-lg`}
-                                />
-                                
-                                <button
-                                    onClick={() => handleTypeChange('marketer')}
-                                    className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
-                                        customerType === 'marketer'
-                                            ? 'text-gray-900'
-                                            : 'text-gray-600 hover:text-gray-900'
-                                    } z-10`}
-                                >
-                                    I'm a Marketer
-                                </button>
-                                <button
-                                    onClick={() => handleTypeChange('promoter')}
-                                    className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
-                                        customerType === 'promoter'
-                                            ? 'text-gray-900'
-                                            : 'text-gray-600 hover:text-gray-900'
-                                    } z-10`}
-                                >
-                                    I'm a Promoter
-                                </button>
-                            </div>
-                        </div>
+                            {/* Premium Segmented Control */}
+                            <div className="flex justify-center mb-10">
+                                <div className="relative inline-flex bg-gray-100/80 backdrop-blur-sm rounded-full p-1 shadow-xl shadow-gray-900/5">
+                                    {/* Sliding background indicator */}
+                                    <div
+                                        className={`absolute inset-y-1 transition-all duration-300 ease-out ${customerType === 'marketer' ? 'left-1' : 'left-[50%]'
+                                            } w-[calc(50%-4px)] bg-white rounded-full shadow-lg`}
+                                    />
 
-                        {/* Hero Content with Animations */}
-                        <div className="transition-all duration-500 ease-out">
-                            <h1 className="text-fluid-xl font-bold leading-tight text-gray-900 tracking-tight animate-fade-in-up">
-                                {currentContent.main}
-                                <span className="relative inline-block ml-2">
-                                    {/* Clean glow effect */}
-                                    <span className={`absolute inset-0 ${
-                                        customerType === 'marketer' 
-                                            ? 'bg-cyan-500' 
+                                    <button
+                                        onClick={() => handleTypeChange('marketer')}
+                                        className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${customerType === 'marketer'
+                                            ? 'text-gray-900'
+                                            : 'text-gray-600 hover:text-gray-900'
+                                            } z-10`}
+                                    >
+                                        I'm a Marketer
+                                    </button>
+                                    <button
+                                        onClick={() => handleTypeChange('promoter')}
+                                        className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${customerType === 'promoter'
+                                            ? 'text-gray-900'
+                                            : 'text-gray-600 hover:text-gray-900'
+                                            } z-10`}
+                                    >
+                                        I'm a Promoter
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Hero Content with Animations */}
+                            <div className="transition-all duration-500 ease-out">
+                                <h1 className="text-fluid-xl font-bold leading-tight text-gray-900 tracking-tight animate-fade-in-up">
+                                    {currentContent.main}
+                                    <span className="relative inline-block ml-2">
+                                        {/* Clean glow effect */}
+                                        <span className={`absolute inset-0 ${customerType === 'marketer'
+                                            ? 'bg-cyan-500'
                                             : 'bg-purple-500'
-                                    } blur-xl opacity-20 scale-110`}></span>
-                                    <span className={`relative ${
-                                        customerType === 'marketer' 
-                                            ? 'text-cyan-600' 
+                                            } blur-xl opacity-20 scale-110`}></span>
+                                        <span className={`relative ${customerType === 'marketer'
+                                            ? 'text-cyan-600'
                                             : 'text-purple-600'
-                                    } font-bold`}> {currentContent.highlight}</span>
-                                </span>
-                            </h1>
-                            
-                            <p className="mt-6 text-xl text-gray-600 font-medium max-w-2xl mx-auto">
-                                {currentContent.subtitle}
-                            </p>
-                        </div>
+                                            } font-bold`}> {currentContent.highlight}</span>
+                                    </span>
+                                </h1>
 
-                        {/* Simplified CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-                            <Link
-                                to="/signup"
-                                className={`group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base font-semibold text-white transition-all duration-300 rounded-lg btn-touch btn-touch-mobile ${
-                                    customerType === 'marketer' 
-                                        ? 'bg-cyan-600 hover:bg-cyan-700' 
-                                        : 'bg-purple-600 hover:bg-purple-700'
-                                } transform hover:scale-[1.02] hover:shadow-lg`}
-                            >
-                                <span className="relative z-10">{currentContent.cta}</span>
-                            </Link>
-                            
-                            <a
-                                href="https://d434da6b-8172-495c-a825-2c0b41707b84-00-x61wm8snhj3m.worf.replit.dev:8008/auth/sign-in"
-                                className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-lg btn-touch btn-touch-mobile transition-all duration-300 hover:border-gray-300 hover:shadow-md transform hover:scale-[1.02]"
-                            >
-                                <span className="relative z-10">Sign In</span>
-                            </a>
-                        </div>
-
-                        {/* Trust Indicators */}
-                        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-gray-600">
-                            <div className="flex items-center gap-2">
-                                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
-                                <span>{currentContent.stats.campaigns}</span>
-                                <span className="text-gray-400">{currentContent.statLabel}</span>
+                                <p className="mt-6 text-xl text-gray-600 font-medium max-w-2xl mx-auto">
+                                    {currentContent.subtitle}
+                                </p>
                             </div>
-                            <div className="hidden sm:block w-1 h-1 bg-gray-400 rounded-full"></div>
-                            <div className="flex items-center gap-2">
-                                <svg className="w-5 h-5 text-cyan-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                                <span>{currentContent.stats.roi}</span>
-                                <span className="text-gray-400">{currentContent.stats.roiLabel}</span>
+
+                            {/* Simplified CTA Buttons */}
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                                <a
+                                    href={`${import.meta.env.VITE_DASHBOARD_URL || 'http://localhost:3000'}/auth/sign-up`}
+                                    className={`group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base font-semibold text-white transition-all duration-300 rounded-lg btn-touch btn-touch-mobile ${customerType === 'marketer'
+                                        ? 'bg-cyan-600 hover:bg-cyan-700'
+                                        : 'bg-purple-600 hover:bg-purple-700'
+                                        } transform hover:scale-[1.02] hover:shadow-lg`}
+                                >
+                                    <span className="relative z-10">{currentContent.cta}</span>
+                                </a>
+
+                                <a
+                                    href={`${import.meta.env.VITE_DASHBOARD_URL || 'http://localhost:3000'}/auth/sign-in`}
+                                    className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-lg btn-touch btn-touch-mobile transition-all duration-300 hover:border-gray-300 hover:shadow-md transform hover:scale-[1.02]"
+                                >
+                                    <span className="relative z-10">Sign In</span>
+                                </a>
+                            </div>
+
+                            {/* Trust Indicators */}
+                            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-gray-600">
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                    </svg>
+                                    <span>{currentContent.stats.campaigns}</span>
+                                    <span className="text-gray-400">{currentContent.statLabel}</span>
+                                </div>
+                                <div className="hidden sm:block w-1 h-1 bg-gray-400 rounded-full"></div>
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-cyan-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <span>{currentContent.stats.roi}</span>
+                                    <span className="text-gray-400">{currentContent.stats.roiLabel}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </section>
 
             {/* Content Sections with Reveal Effect */}
@@ -363,7 +356,7 @@ const Hero = () => {
                         <div className="text-center mb-8">
                             <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Trusted by leading companies</p>
                         </div>
-                        
+
                         <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
                             {/* Company logos as text for now */}
                             <div className="text-2xl font-bold text-gray-400">TechCorp</div>
@@ -372,7 +365,7 @@ const Hero = () => {
                             <div className="text-2xl font-bold text-gray-400">Digital Inc.</div>
                             <div className="text-2xl font-bold text-gray-400">Scale Labs</div>
                         </div>
-                        
+
                         {/* Testimonial */}
                         <div className="mt-12 max-w-2xl mx-auto text-center">
                             <blockquote className="relative">
@@ -380,7 +373,7 @@ const Hero = () => {
                                     <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                                 </svg>
                                 <p className="text-lg font-medium text-gray-700">
-                                    "Reva transformed our marketing strategy. We're seeing 3x better ROI compared to traditional advertising channels."
+                                    "Reava transformed our marketing strategy. We're seeing 3x better ROI compared to traditional advertising channels."
                                 </p>
                                 <div className="mt-4">
                                     <p className="text-base font-semibold text-gray-900">Sarah Chen</p>
@@ -388,7 +381,7 @@ const Hero = () => {
                                 </div>
                             </blockquote>
                         </div>
-                        
+
                         {/* Dashboard Mockup - Full Design */}
                         <div className="mt-20 pb-12">
                             <div className="relative">
@@ -407,11 +400,11 @@ const Hero = () => {
                                                         </div>
                                                         <div className="flex-1 flex justify-center">
                                                             <div className="bg-white border border-gray-300 rounded-md px-4 py-1 text-xs text-gray-600">
-                                                                reva.app/dashboard
+                                                                reava.app/dashboard
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     {/* Dashboard content */}
                                                     <div className="flex bg-gray-50">
                                                         {/* Sidebar */}
@@ -470,7 +463,7 @@ const Hero = () => {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        
+
                                                         {/* Main content */}
                                                         <div className="flex-1 p-6">
                                                             {/* Header */}
@@ -483,7 +476,7 @@ const Hero = () => {
                                                                     Date range
                                                                 </p>
                                                             </div>
-                                                            
+
                                                             {/* Metrics cards */}
                                                             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-6">
                                                                 <div className="bg-white rounded-lg p-2 sm:p-3 border border-gray-200">
@@ -527,7 +520,7 @@ const Hero = () => {
                                                                     <div className="text-xs text-red-600">-0.09%</div>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
                                                                 {/* Campaign Reports */}
                                                                 <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200">
@@ -585,7 +578,7 @@ const Hero = () => {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                 {/* Sales Report */}
                                                                 <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200">
                                                                     <div className="flex items-center justify-between mb-3">
@@ -624,13 +617,13 @@ const Hero = () => {
                                                                             </div>
                                                                         </div>
                                                                         <div className="h-32 flex items-end justify-between gap-1 mt-3">
-                                                                            <div className="w-full bg-blue-400 rounded-t" style={{height: '55%'}}></div>
-                                                                            <div className="w-full bg-blue-500 rounded-t" style={{height: '75%'}}></div>
-                                                                            <div className="w-full bg-blue-400 rounded-t" style={{height: '65%'}}></div>
-                                                                            <div className="w-full bg-blue-500 rounded-t" style={{height: '85%'}}></div>
-                                                                            <div className="w-full bg-blue-400 rounded-t" style={{height: '70%'}}></div>
-                                                                            <div className="w-full bg-blue-500 rounded-t" style={{height: '90%'}}></div>
-                                                                            <div className="w-full bg-blue-400 rounded-t" style={{height: '80%'}}></div>
+                                                                            <div className="w-full bg-blue-400 rounded-t" style={{ height: '55%' }}></div>
+                                                                            <div className="w-full bg-blue-500 rounded-t" style={{ height: '75%' }}></div>
+                                                                            <div className="w-full bg-blue-400 rounded-t" style={{ height: '65%' }}></div>
+                                                                            <div className="w-full bg-blue-500 rounded-t" style={{ height: '85%' }}></div>
+                                                                            <div className="w-full bg-blue-400 rounded-t" style={{ height: '70%' }}></div>
+                                                                            <div className="w-full bg-blue-500 rounded-t" style={{ height: '90%' }}></div>
+                                                                            <div className="w-full bg-blue-400 rounded-t" style={{ height: '80%' }}></div>
                                                                         </div>
                                                                         <div className="flex justify-between mt-1">
                                                                             <span className="text-[8px] text-gray-400">Monday</span>
@@ -681,7 +674,7 @@ const Hero = () => {
                                 <h3 className="mt-6 text-lg font-semibold text-gray-900">Sales</h3>
                                 <p className="mt-3 text-sm leading-relaxed text-gray-600">Track sales conversions in real-time with detailed analytics and performance metrics.</p>
                             </div>
-                            
+
                             {/* Onboarding Card */}
                             <div className="group relative bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md hover:border-cyan-200 transition-all duration-200">
                                 <div className="flex items-center justify-center w-14 h-14 mx-auto bg-cyan-50 rounded-xl group-hover:bg-cyan-100 transition-colors duration-200">
@@ -692,7 +685,7 @@ const Hero = () => {
                                 <h3 className="mt-6 text-lg font-semibold text-gray-900">Onboarding</h3>
                                 <p className="mt-3 text-sm leading-relaxed text-gray-600">Seamless onboarding process gets you up and running in minutes with guided setup.</p>
                             </div>
-                            
+
                             {/* Product Card */}
                             <div className="group relative bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md hover:border-cyan-200 transition-all duration-200">
                                 <div className="flex items-center justify-center w-14 h-14 mx-auto bg-cyan-50 rounded-xl group-hover:bg-cyan-100 transition-colors duration-200">
@@ -703,7 +696,7 @@ const Hero = () => {
                                 <h3 className="mt-6 text-lg font-semibold text-gray-900">Product</h3>
                                 <p className="mt-3 text-sm leading-relaxed text-gray-600">Comprehensive product management tools to organize and optimize your campaigns.</p>
                             </div>
-                            
+
                             {/* Quality Card */}
                             <div className="group relative bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md hover:border-cyan-200 transition-all duration-200">
                                 <div className="flex items-center justify-center w-14 h-14 mx-auto bg-cyan-50 rounded-xl group-hover:bg-cyan-100 transition-colors duration-200">
@@ -714,7 +707,7 @@ const Hero = () => {
                                 <h3 className="mt-6 text-lg font-semibold text-gray-900">Quality</h3>
                                 <p className="mt-3 text-sm leading-relaxed text-gray-600">Advanced fraud detection ensures high-quality traffic and genuine engagement only.</p>
                             </div>
-                            
+
                             {/* Result Card */}
                             <div className="group relative bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md hover:border-cyan-200 transition-all duration-200">
                                 <div className="flex items-center justify-center w-14 h-14 mx-auto bg-cyan-50 rounded-xl group-hover:bg-cyan-100 transition-colors duration-200">
@@ -729,7 +722,7 @@ const Hero = () => {
                         </div>
                     </div>
                 </section>
-                
+
                 {/* How It Works Section */}
                 <section id="how-it-works" className="py-10 bg-white sm:py-16 lg:py-24">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -771,7 +764,7 @@ const Hero = () => {
                         </div>
                     </div>
                 </section>
-                
+
                 {/* Pricing Section */}
                 <section id="pricing" className="py-10 bg-white sm:py-16 lg:py-24">
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -1067,15 +1060,15 @@ const Hero = () => {
                                 <p className="mt-4 text-sm leading-relaxed text-gray-600">
                                     Connect marketers with promoters through performance-based campaigns. Track, verify, and reward real engagement.
                                 </p>
-                                
+
                                 {/* Social Media Icons */}
                                 <div className="flex items-center gap-3 mt-6">
                                     <a href="#" className="flex items-center justify-center text-gray-400 transition-all duration-200 bg-gray-50 rounded-full w-10 h-10 hover:bg-cyan-100 hover:text-cyan-600">
-                                            <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                                <path
-                                                    d="M19.633 7.997c.013.175.013.349.013.523 0 5.325-4.053 11.461-11.46 11.461-2.282 0-4.402-.661-6.186-1.809.324.037.636.05.973.05a8.07 8.07 0 0 0 5.001-1.721 4.036 4.036 0 0 1-3.767-2.793c.249.037.499.062.761.062.361 0 .724-.05 1.061-.137a4.027 4.027 0 0 1-3.23-3.953v-.05c.537.299 1.16.486 1.82.511a4.022 4.022 0 0 1-1.796-3.354c0-.748.199-1.434.548-2.032a11.457 11.457 0 0 0 8.306 4.215c-.062-.3-.1-.611-.1-.923a4.026 4.026 0 0 1 4.028-4.028c1.16 0 2.207.491 2.943 1.272a7.957 7.957 0 0 0 2.556-.973 4.02 4.02 0 0 1-1.771 2.22 8.073 8.073 0 0 0 2.319-.636 8.645 8.645 0 0 1-2.019 2.083z"
-                                                ></path>
-                                            </svg>
+                                        <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M19.633 7.997c.013.175.013.349.013.523 0 5.325-4.053 11.461-11.46 11.461-2.282 0-4.402-.661-6.186-1.809.324.037.636.05.973.05a8.07 8.07 0 0 0 5.001-1.721 4.036 4.036 0 0 1-3.767-2.793c.249.037.499.062.761.062.361 0 .724-.05 1.061-.137a4.027 4.027 0 0 1-3.23-3.953v-.05c.537.299 1.16.486 1.82.511a4.022 4.022 0 0 1-1.796-3.354c0-.748.199-1.434.548-2.032a11.457 11.457 0 0 0 8.306 4.215c-.062-.3-.1-.611-.1-.923a4.026 4.026 0 0 1 4.028-4.028c1.16 0 2.207.491 2.943 1.272a7.957 7.957 0 0 0 2.556-.973 4.02 4.02 0 0 1-1.771 2.22 8.073 8.073 0 0 0 2.319-.636 8.645 8.645 0 0 1-2.019 2.083z"
+                                            ></path>
+                                        </svg>
                                     </a>
                                     <a href="#" className="flex items-center justify-center text-gray-400 transition-all duration-200 bg-gray-50 rounded-full w-10 h-10 hover:bg-cyan-100 hover:text-cyan-600">
                                         <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -1115,7 +1108,7 @@ const Hero = () => {
                                     </li>
                                 </ul>
                             </div>
-                            
+
                             {/* Help Links */}
                             <div>
                                 <h3 className="text-xs font-semibold tracking-wider text-gray-500 uppercase">Help</h3>
@@ -1134,7 +1127,7 @@ const Hero = () => {
                                     </li>
                                 </ul>
                             </div>
-                            
+
                             {/* Newsletter Subscription */}
                             <div>
                                 <h3 className="text-xs font-semibold tracking-wider text-gray-500 uppercase">Subscribe to Newsletter</h3>
@@ -1154,7 +1147,7 @@ const Hero = () => {
                             </div>
                         </div>
 
-                        
+
                         {/* Copyright Section */}
                         <div className="mt-12 pt-8 border-t border-gray-100">
                             <p className="text-xs text-center text-gray-500">© 2025 Reva. All rights reserved.</p>

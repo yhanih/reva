@@ -9,9 +9,9 @@ export default defineConfig({
     port: 5000,
     strictPort: true,
     allowedHosts: true,
-    hmr: {
-      protocol: 'wss',
-      clientPort: 443,
-    },
+    // hmr: {
+    //   protocol: 'wss',
+    //   clientPort: 443,
+    // },
   },
 })

@@ -1,24 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "components/navbar";
 import Sidebar from "components/sidebar";
 import Footer from "components/footer/Footer";
-import routes from "routes.js";
+import { marketerRoutes, promoterRoutes } from "routes.js";
+import { useAuth } from "AuthContext";
+import { supabase } from "supabaseClient";
 
 export default function Admin(props) {
   const { ...rest } = props;
   const location = useLocation();
-  const [open, setOpen] = React.useState(true);
-  const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
+  const [open, setOpen] = useState(true);
+  const [currentRoute, setCurrentRoute] = useState("Main Dashboard");
+  const [role, setRole] = useState(null);
+  const { user } = useAuth();
 
-  React.useEffect(() => {
+  // Fetch user role
+  useEffect(() => {
+    const fetchRole = async () => {
+      if (user) {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', user.id)
+          .single();
+
+        if (data) {
+          setRole(data.role);
+        }
+      }
+    };
+    fetchRole();
+  }, [user]);
+
+  // Select routes based on role
+  const activeRoutes = role === 'promoter' ? promoterRoutes : marketerRoutes;
+
+  useEffect(() => {
     window.addEventListener("resize", () =>
       window.innerWidth < 1200 ? setOpen(false) : setOpen(true)
     );
   }, []);
-  React.useEffect(() => {
-    getActiveRoute(routes);
-  }, [location.pathname]);
+
+  useEffect(() => {
+    getActiveRoute(activeRoutes);
+  }, [location.pathname, activeRoutes]);
 
   const getActiveRoute = (routes) => {
     let activeRoute = "Main Dashboard";
@@ -33,6 +59,7 @@ export default function Admin(props) {
     }
     return activeRoute;
   };
+
   const getActiveNavbar = (routes) => {
     let activeNavbar = false;
     for (let i = 0; i < routes.length; i++) {
@@ -44,6 +71,7 @@ export default function Admin(props) {
     }
     return activeNavbar;
   };
+
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
@@ -59,7 +87,7 @@ export default function Admin(props) {
   document.documentElement.dir = "ltr";
   return (
     <div className="flex h-full w-full">
-      <Sidebar open={open} onClose={() => setOpen(false)} />
+      <Sidebar open={open} onClose={() => setOpen(false)} routes={activeRoutes} />
       {/* Navbar & Main Content */}
       <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
         {/* Main Content */}
@@ -70,14 +98,14 @@ export default function Admin(props) {
           <div className="h-full">
             <Navbar
               onOpenSidenav={() => setOpen(true)}
-              logoText={"Horizon UI Tailwind React"}
+              logoText={"Reava Dashboard"}
               brandText={currentRoute}
-              secondary={getActiveNavbar(routes)}
+              secondary={getActiveNavbar(activeRoutes)}
               {...rest}
             />
             <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
               <Routes>
-                {getRoutes(routes)}
+                {getRoutes(activeRoutes)}
 
                 <Route
                   path="/"
