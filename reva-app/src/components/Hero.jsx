@@ -258,6 +258,20 @@ const Hero = () => {
                     transition: 'none', // Use CSS transform for smooth 60fps animation
                 }}
             >
+                {/* Spline 3D Full Background */}
+                <div className="absolute inset-0 pointer-events-none z-5 overflow-hidden">
+                    <SplineErrorBoundary fallback={
+                        <div className={`w-full h-full ${customerType === 'marketer' ? 'bg-gradient-radial from-cyan-200/40 via-transparent to-transparent' : 'bg-gradient-radial from-purple-200/40 via-transparent to-transparent'}`} />
+                    }>
+                        <Suspense fallback={<div className="w-full h-full" />}>
+                            <Spline
+                                scene="https://prod.spline.design/Cq-cQXYHuuj0jc40/scene.splinecode"
+                                style={{ width: '100%', height: '100%' }}
+                            />
+                        </Suspense>
+                    </SplineErrorBoundary>
+                </div>
+
                 {/* Add padding for sticky navbar when it appears */}
                 <div className={`${isNavbarSticky ? 'pt-20' : ''} transition-all duration-300`}>
                     {/* Clean overlay for consistency */}
@@ -304,22 +318,6 @@ const Hero = () => {
 
                             {/* Hero Content with Animations */}
                             <div className="transition-all duration-500 ease-out relative">
-                                {/* Spline 3D Background Element */}
-                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0" style={{ top: '-50px', height: 'calc(100% + 100px)' }}>
-                                    <div className="w-full h-full max-w-2xl" style={{ opacity: 0.9 }}>
-                                        <SplineErrorBoundary fallback={
-                                            <div className={`w-full h-full rounded-full blur-3xl ${customerType === 'marketer' ? 'bg-cyan-400/30' : 'bg-purple-400/30'}`} />
-                                        }>
-                                            <Suspense fallback={<div className="w-full h-full" />}>
-                                                <Spline
-                                                    scene="https://prod.spline.design/Cq-cQXYHuuj0jc40/scene.splinecode"
-                                                    style={{ width: '100%', height: '100%' }}
-                                                />
-                                            </Suspense>
-                                        </SplineErrorBoundary>
-                                    </div>
-                                </div>
-                                
                                 <h1 className="text-fluid-xl font-bold leading-tight text-gray-900 tracking-tight animate-fade-in-up relative z-10">
                                     {currentContent.main}
                                     <span className="relative inline-block ml-2">
