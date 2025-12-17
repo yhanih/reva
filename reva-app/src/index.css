@@ -87,3 +87,12 @@ html {
 .text-fluid-2xl {
   font-size: clamp(3rem, 7vw, 5rem);
 }
+
+/* Hide Spline watermark/logo */
+canvas + a,
+canvas ~ a[href*="spline"],
+a[href*="spline.design"] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
