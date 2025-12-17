@@ -1,5 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import Pattern from './Pattern';
+import Spline from '@splinetool/react-spline';
+
+class SplineErrorBoundary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { hasError: false };
+    }
+
+    static getDerivedStateFromError(error) {
+        return { hasError: true };
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return this.props.fallback || null;
+        }
+        return this.props.children;
+    }
+}
 
 const Hero = () => {
     const [expanded, setExpanded] = useState(false);
@@ -284,8 +303,24 @@ const Hero = () => {
                             </div>
 
                             {/* Hero Content with Animations */}
-                            <div className="transition-all duration-500 ease-out">
-                                <h1 className="text-fluid-xl font-bold leading-tight text-gray-900 tracking-tight animate-fade-in-up">
+                            <div className="transition-all duration-500 ease-out relative">
+                                {/* Spline 3D Background Element */}
+                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0" style={{ top: '-50px', height: 'calc(100% + 100px)' }}>
+                                    <div className="w-full h-full max-w-2xl" style={{ opacity: 0.9 }}>
+                                        <SplineErrorBoundary fallback={
+                                            <div className={`w-full h-full rounded-full blur-3xl ${customerType === 'marketer' ? 'bg-cyan-400/30' : 'bg-purple-400/30'}`} />
+                                        }>
+                                            <Suspense fallback={<div className="w-full h-full" />}>
+                                                <Spline
+                                                    scene="https://prod.spline.design/Cq-cQXYHuuj0jc40/scene.splinecode"
+                                                    style={{ width: '100%', height: '100%' }}
+                                                />
+                                            </Suspense>
+                                        </SplineErrorBoundary>
+                                    </div>
+                                </div>
+                                
+                                <h1 className="text-fluid-xl font-bold leading-tight text-gray-900 tracking-tight animate-fade-in-up relative z-10">
                                     {currentContent.main}
                                     <span className="relative inline-block ml-2">
                                         {/* Clean glow effect */}
