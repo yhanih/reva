@@ -1,0 +1,92 @@
+Logs for your project will appear below. Press Ctrl+C to exit.
+iOS Bundled 4984ms node_modules/expo-router/entry.js (3112 modules)
+ WARN  Route "./(auth)/sign-in.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(auth)/sign-up.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/campaigns.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/earnings.tsx" is missing the required default export. Ensure a React component is exported as default.
+ ERROR  [Error: Exception in HostFunction: <unknown>] 
+
+Code: FadeInView.tsx
+  1 | import React, { useEffect } from 'react';
+  2 | import { ViewStyle } from 'react-native';
+> 3 | import Animated, {
+    | ^
+  4 |     useSharedValue,
+  5 |     useAnimatedStyle,
+  6 |     withSpring,
+Call Stack
+  <global> (components/ui/FadeInView.tsx:3)
+  <global> (components/ui/index.ts:4)
+  <global> (app/(auth)/sign-in.tsx:13)
+ ERROR  [Error: Exception in HostFunction: <unknown>] 
+
+Code: FadeInView.tsx
+  1 | import React, { useEffect } from 'react';
+  2 | import { ViewStyle } from 'react-native';
+> 3 | import Animated, {
+    | ^
+  4 |     useSharedValue,
+  5 |     useAnimatedStyle,
+  6 |     withSpring,
+Call Stack
+  <global> (components/ui/FadeInView.tsx:3)
+  <global> (components/ui/index.ts:4)
+  <global> (app/(auth)/sign-in.tsx:13)
+ WARN  Route "./(tabs)/index.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/profile.tsx" is missing the required default export. Ensure a React component is exported as default.
+ ERROR  [Error: Exception in HostFunction: <unknown>] 
+
+Code: FadeInView.tsx
+  1 | import React, { useEffect } from 'react';
+  2 | import { ViewStyle } from 'react-native';
+> 3 | import Animated, {
+    | ^
+  4 |     useSharedValue,
+  5 |     useAnimatedStyle,
+  6 |     withSpring,
+Call Stack
+  <global> (components/ui/FadeInView.tsx:3)
+  <global> (components/ui/index.ts:4)
+  <global> (app/(auth)/sign-in.tsx:13)
+ ERROR  [Error: Exception in HostFunction: <unknown>] 
+
+Code: FadeInView.tsx
+  1 | import React, { useEffect } from 'react';
+  2 | import { ViewStyle } from 'react-native';
+> 3 | import Animated, {
+    | ^
+  4 |     useSharedValue,
+  5 |     useAnimatedStyle,
+  6 |     withSpring,
+Call Stack
+  <global> (components/ui/FadeInView.tsx:3)
+  <global> (components/ui/index.ts:4)
+  <global> (app/(auth)/sign-in.tsx:13)
+ ERROR  [Error: Exception in HostFunction: <unknown>] 
+
+Code: FadeInView.tsx
+  1 | import React, { useEffect } from 'react';
+  2 | import { ViewStyle } from 'react-native';
+> 3 | import Animated, {
+    | ^
+  4 |     useSharedValue,
+  5 |     useAnimatedStyle,
+  6 |     withSpring,
+Call Stack
+  <global> (components/ui/FadeInView.tsx:3)
+  <global> (components/ui/index.ts:4)
+  <global> (app/(auth)/sign-in.tsx:13)
+ ERROR  [Error: Exception in HostFunction: <unknown>] 
+
+Code: FadeInView.tsx
+  1 | import React, { useEffect } from 'react';
+  2 | import { ViewStyle } from 'react-native';
+> 3 | import Animated, {
+    | ^
+  4 |     useSharedValue,
+  5 |     useAnimatedStyle,
+  6 |     withSpring,
+Call Stack
+  <global> (components/ui/FadeInView.tsx:3)
+  <global> (components/ui/index.ts:4)
+  <global> (app/(auth)/sign-in.tsx:13)
